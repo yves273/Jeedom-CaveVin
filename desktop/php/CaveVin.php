@@ -94,11 +94,6 @@ $eqLogics = eqLogic::byType('CaveVin');
 						<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analyse">
 							<option value="manual">{{En manuel}}</option>
 							<option value="local">{{GPIO en local}}</option>
-							<?php 
-							foreach (jeeNetwork::byPlugin('motion') as $jeeNetwork) {
-								echo '<option value="'.$jeeNetwork->getId().'">{{GPIO sur l\'esclave '.$jeeNetwork->getName().'}}</option>';
-							}
-								?>
 						</select>
                     </div>
                 </div>
