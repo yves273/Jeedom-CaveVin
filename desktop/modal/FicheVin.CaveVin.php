@@ -41,7 +41,11 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 						<tr>
 							<td>Couleur: </td>
 							<td>
-								<input type="text" class="mesVinAttr form-control " data-l1key="Couleur" />
+								<select class="mesVinAttr form-control " data-l1key="Couleur" >
+									<option value="Rouge">Rouge</option>
+									<option value="Rose">Rose</option>
+									<option value="Blanc">Blanc</option>
+								</select>
 							</td>
 						</tr>
 						<tr>
