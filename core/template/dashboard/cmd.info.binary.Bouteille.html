@@ -1,0 +1,28 @@
+<div style="padding:0;width:55px;height:55px;" class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="binary" data-cmd_id="#id#" title="#collectDate#">
+	<div class="row">
+		<div class="center-block col-xs-12 iconCmd#id#"></div>
+	</div>
+	<script>
+		$(".iconCmd#id#").empty();
+		if ("#state#" == "1") {
+			$(".iconCmd#id#").append("<img width='50' src='./plugins/CaveVin/core/template/images/CasierPlein.png'>");
+		} else {
+			$(".iconCmd#id#").append("<img width='50' src='./plugins/CaveVin/core/template/images/CasierVide.png'>");
+		}
+		$('.cmd[data-cmd_id=#id#]').on('click', function() {
+			logement='#id#';
+			if (ActiveDialog){
+				$('#md_modal').dialog({
+					title: "Fiche vin du casier",
+						height: 700,
+						width: 850});
+				$('#md_modal').load('index.php?v=d&modal=FicheVin.CaveVin&plugin=CaveVin&type=CaveVin', function() {
+					getVinInformation('#logicalId#');
+				});
+				$('#md_modal').dialog('open');
+			}	
+			else
+				getVinInformation('#logicalId#');
+		});
+	</script>
+</div>

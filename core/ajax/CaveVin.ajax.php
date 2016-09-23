@@ -1,0 +1,126 @@
+<?php
+
+/* This file is part of Jeedom.
+ *
+ * Jeedom is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Jeedom is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+try {
+	require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+    include_file('core', 'authentification', 'php');
+	include_file('core', 'mesVin', 'class', 'CaveVin');
+
+    if (!isConnect()) {
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
+	}
+
+	if (init('action') == 'getFiltreVins') {	
+		switch(init('Filtre')){
+			case "met":
+				$return = utils::o2a(mesVin::byMet(init('search')));
+			break;
+			default:
+				$return = utils::o2a(mesVin::all());
+			break;
+		}
+	/*	for($loop=0,$loop<=count($return),$loop++){
+			$return[$loop]['QtsTypeVin']=0;
+			$Caves=eqLogic::byType('CaveVin');
+			if (is_object($Caves))
+			{
+				foreach ($Caves as $Cave){
+					$return$return[$loop]['QtsTypeVin']+=count($Cave->getCmd(null, $return['id']));
+				}
+			}
+		}*/
+        ajax::success(jeedom::toHumanReadable($return));
+	}
+	if (init('action') == 'getVinInformation') {	
+        ajax::success(jeedom::toHumanReadable(utils::o2a(mesVin::byId(init('id')))));
+	}
+	if (init('action') == 'gestionBouteille') {
+		$Commande = cmd::byId(init('logement'));
+		if (is_object($Commande))
+		{
+			log::add('CaveVin','debug','Mise a jours de la bouteille: '.init('logement').' '.init('status'));
+			$Commande->setCollectDate('');
+			$Commande->event(init('status'));
+			$Commande->setLogicalId(init('type'));
+			$Commande->save();
+			ajax::success(true);
+		}
+		else
+			ajax::success(false);
+	}
+	if (init('action') == 'updateVin') {
+	
+        $mesmesVinave = json_decode(init('event'), true);
+        $mesVin = null;
+        if (isset($mesmesVinave['id'])) {
+            $mesVin = mesVin::byId($mesmesVinave['id']);
+        }
+        if (!is_object($mesVin)) {
+            $mesVin = new mesVin();
+        }
+        utils::a2o($mesVin, jeedom::fromHumanReadable($mesmesVinave));
+        $mesVin->save();
+        ajax::success(jeedom::toHumanReadable(utils::o2a($mesVin)));
+    }
+	if (init('action') == 'removeVin') {
+           $mesVin = mesVin::byId(init('id'));
+        if (is_object($mesVin))
+			$mesVin->remove();
+        ajax::success();
+    }
+  	if (init('action') == 'getWidget') {
+		$CaveWidget=eqLogic::byId(init('id'));
+		if (is_object($CaveWidget))
+		{
+			ajax::success($CaveWidget->toHtml('dashboard',false));
+		}
+		ajax::success(false);
+    }
+    if (init('action') == 'uploadEttiquette') {
+		$uploaddir = dirname(__FILE__) . '/../../images';
+		if (!file_exists($uploaddir)) {
+			mkdir($uploaddir);
+		}
+		if (!file_exists($uploaddir)) {
+			throw new Exception(__('Répertoire d\'upload non trouvé : ', __FILE__) . $uploaddir);
+		}
+		if (!isset($_FILES['file'])) {
+			throw new Exception(__('Aucun fichier trouvé. Vérifié parametre PHP (post size limit)', __FILE__));
+		}
+		/*$extension = strtolower(strrchr($_FILES['file']['name'], '.'));
+		if (!in_array($extension, array('.zip'))) {
+			throw new Exception('Extension du fichier non valide (autorisé .zip) : ' . $extension);
+		}*/
+		if (filesize($_FILES['file']['tmp_name']) > 100000000) {
+			throw new Exception(__('Le fichier est trop gros (maximum 100mo)', __FILE__));
+		}
+		$filename = str_replace(array(' ', '(', ')'), '', $_FILES['file']['name']);
+		if (!move_uploaded_file($_FILES['file']['tmp_name'], $uploaddir . '/' . $filename)) {
+			throw new Exception(__('Impossible de déplacer le fichier temporaire', __FILE__));
+		}
+		if (!file_exists($uploaddir . '/' . $filename)) {
+			throw new Exception(__('Impossible d\'uploader le fichier (limite du serveur web ?)', __FILE__));
+		}
+		ajax::success('./plugins/CaveVin/images/' . $filename);
+    }
+	throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
+    /*     * *********Catch exeption*************** */
+} catch (Exception $e) {
+    ajax::error(displayExeption($e), $e->getCode());
+}
+?>
