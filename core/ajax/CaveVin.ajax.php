@@ -17,7 +17,7 @@ try {
 				$return = utils::o2a(mesVin::all());
 			break;
 		}
-		for($loop=0;$loop<=count($return);$loop++){
+		for($loop=0;$loop<count($return);$loop++){
 		/*	if(isset($return[$loop]['QtsTypeVin']))
 				$QtsTypeVin=intval($return[$loop]['QtsTypeVin']);
 			else*/
