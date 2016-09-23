@@ -4,33 +4,6 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 include_file('core', 'authentification', 'php');
 include_file('core', 'mesVin', 'class', 'CaveVin');
 class CaveVin extends eqLogic {
-    /*     * *************************Attributs****************************** */
-
-
-
-    /*     * ***********************Methode static*************************** */
-
-    /*
-     * Fonction exécutée automatiquement toutes les minutes par Jeedom
-      public static function cron() {
-
-      }
-     */
-
-
-    /*
-     * Fonction exécutée automatiquement toutes les heures par Jeedom
-      public static function cronHourly() {
-
-      }
-     */
-
-    /*
-     * Fonction exécutée automatiquement tous les jours par Jeedom
-      public static function cronDayly() {
-
-      }
-     */
 	public static function AddCommande($eqLogic,$Name) {
 		$Commande = CaveVinCmd::byEqLogicIdCmdName($eqLogic->getId(),$Name);//$eqLogic->getCmd(null,$_logicalId);
 		if (!is_object($Commande))
@@ -112,7 +85,7 @@ class CaveVin extends eqLogic {
 		exec("gpio write ".$GPIO.' '.$value,$commands,$return);
 	}
 	public function StartDemon() {
-        switch($this->getConfiguration('analyse')){
+        	/*switch($this->getConfiguration('analyse')){
 			case 'manual':
 				$cron = cron::byClassAndFunction('CaveVin', 'DemonManual');
 				if (!is_object($cron)) {
@@ -151,19 +124,8 @@ class CaveVin extends eqLogic {
 					}
 				}
 			break;
-		}
+		}*/
     }
-
-    /*     * *********************Méthodes d'instance************************* */
-
-    public function preInsert() {
-        
-    }
-
-    public function postInsert() {
-        
-    }
-
     public function preSave() {
 		for($heightCase=1;$heightCase<=$this->getConfiguration('heightCase');$heightCase++){
 			for($widthCase=1;$widthCase<=$this->getConfiguration('widthCase');$widthCase++){
@@ -171,26 +133,6 @@ class CaveVin extends eqLogic {
 				self::AddCommande($this,$Name);
 			}
 		}
-    }
-
-    public function postSave() {
-        $this->StartDemon();
-    }
-
-    public function preUpdate() {
-        
-    }
-
-    public function postUpdate() {
-        
-    }
-
-    public function preRemove() {
-        
-    }
-
-    public function postRemove() {
-        
     }
   public function toHtml($_version = 'mobile',$Dialog=true) {
 	/*	if ($this->getIsEnable() != 1) {
@@ -225,29 +167,10 @@ class CaveVin extends eqLogic {
 		$replace['#Casier#']=template_replace($replaceCasier,$HtmlCasier) ;
 		return template_replace($replace, getTemplate('core', $_version, 'eqLogic','CaveVin'));
 	}
-	
-    /*     * **********************Getteur Setteur*************************** */
 }
 class CaveVinCmd extends cmd {
-    /*     * *************************Attributs****************************** */
-
-
-    /*     * ***********************Methode static*************************** */
-
-
-    /*     * *********************Methode d'instance************************* */
-
-    /*
-     * Non obligatoire permet de demander de ne pas supprimer les commandes même si elles ne sont pas dans la nouvelle configuration de l'équipement envoyé en JS
-      public function dontRemoveCmd() {
-      return true;
-      }
-     */
-
     public function execute($_options = array()) {
         
     }
-
-    /*     * **********************Getteur Setteur*************************** */
 }
 ?>
