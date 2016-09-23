@@ -115,15 +115,6 @@ class CaveVin extends eqLogic {
 					$cron->run();
 				}
 			break;
-			default:
-				if($this->getConfiguration('analyse')!=''){
-					$jeeNetwork=jeeNetwork::byId($this->getConfiguration('analyse'));
-					$jsonrpc = $jeeNetwork->getJsonRpc();
-					if (!$jsonrpc->sendRequest('DemonGPIO', array('plugin' => 'CaveVin', 'id' => $this->getId()))) {
-						throw new Exception($jsonrpc->getError());
-					}
-				}
-			break;
 		}*/
     }
     public function preSave() {
