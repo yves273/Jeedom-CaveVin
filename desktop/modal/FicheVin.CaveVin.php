@@ -219,23 +219,25 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 		$('#md_modal').dialog( "close" );
 	});
 	function Gestionbouteille(logement,status,typeVin) {
-		$.ajax({
-			type: 'POST',            
-			async: false,
-			url: 'plugins/CaveVin/core/ajax/CaveVin.ajax.php',
-			data:
-				{
-				action: 'gestionBouteille',
-				logement:logement,
-				status:status,
-				type:typeVin,
-				},
-			dataType: 'json',
-			global: false,
-			error: function(request, status, error) {},
-			success: function(data) {
-				}
-		});
+		if(logement!="",typeVin!=""){
+			$.ajax({
+				type: 'POST',            
+				async: false,
+				url: 'plugins/CaveVin/core/ajax/CaveVin.ajax.php',
+				data:
+					{
+					action: 'gestionBouteille',
+					logement:logement,
+					status:status,
+					type:typeVin,
+					},
+				dataType: 'json',
+				global: false,
+				error: function(request, status, error) {},
+				success: function(data) {
+					}
+			});
+		}
 	};
 	function getVinInformation(id) {
 		$('.mesVinAttr').val('');
