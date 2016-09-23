@@ -5,10 +5,10 @@
 	<script>
 		$(".iconCmd#id#").empty();
 		if ("#state#" == "1") {
-			$(".iconCmd#id#").append($("<img width='50' src='./plugins/CaveVin/core/template/images/CasierPlein.png'>")
-				.text("0"));
+			$(".iconCmd#id#").html($("<img width='50' src='./plugins/CaveVin/core/template/images/Casier#Couleur#.png'>"));
 		} else {
-			$(".iconCmd#id#").append("<img width='50' src='./plugins/CaveVin/core/template/images/Casier#Couleur#.png'>");
+			$(".iconCmd#id#").html($("<img width='50' src='./plugins/CaveVin/core/template/images/CasierVide.png'>"));
+			$(".iconCmd#id#").text(0)
 		}
 		$('.cmd[data-cmd_id=#id#]').on('click', function() {
 			logement='#id#';
