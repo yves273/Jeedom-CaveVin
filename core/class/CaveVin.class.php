@@ -153,7 +153,11 @@ class CaveVin extends eqLogic {
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				 $replaceCasier['#'.$cmd->getName().'#'] = $cmd->toHtml($_version);
-				 $replaceCasier['#Couleur#'] = mesVin::byId($cmd->getLogicalId())->getCouleur();
+				 $vin=mesVin::byId($cmd->getLogicalId());
+				 if(is_object($vin))
+				 	$replaceCasier['#Couleur#'] = $vin->getCouleur();
+				 else
+				 	$replaceCasier['#Couleur#'] = "Rouge";
 			}
 		}   
 		$replace['#Casier#']=template_replace($replaceCasier,$HtmlCasier) ;
