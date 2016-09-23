@@ -117,15 +117,15 @@ class CaveVin extends eqLogic {
 			break;
 		}*/
     }
-    public function preSave() {
+    	public function preSave() {
 		for($heightCase=1;$heightCase<=$this->getConfiguration('heightCase');$heightCase++){
 			for($widthCase=1;$widthCase<=$this->getConfiguration('widthCase');$widthCase++){
 				$Name=$this->getName().'_'.$widthCase."x".$heightCase;
 				self::AddCommande($this,$Name);
 			}
 		}
-    }
-  public function toHtml($_version = 'mobile',$Dialog=true) {
+    	}
+  	public function toHtml($_version = 'mobile',$Dialog=true) {
 	/*	if ($this->getIsEnable() != 1) {
 			return '';
 		}
@@ -153,6 +153,7 @@ class CaveVin extends eqLogic {
 		if ($this->getIsEnable()) {
 			foreach ($this->getCmd(null, null, true) as $cmd) {
 				 $replaceCasier['#'.$cmd->getName().'#'] = $cmd->toHtml($_version);
+				 $replaceCasier['#Couleur#'] = mesVin::byId($cmd->getLogicalId())->getCouleur();
 			}
 		}   
 		$replace['#Casier#']=template_replace($replaceCasier,$HtmlCasier) ;
