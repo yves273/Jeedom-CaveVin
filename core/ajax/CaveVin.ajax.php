@@ -23,7 +23,7 @@ try {
 			if (is_array($Caves)){
 				foreach ($Caves as $Cave){
 					if (is_object($Cave)){
-						$Qts=count($Cave->getCmd(null, $return[$loop]['id'],null,true))
+						$Qts=count($Cave->getCmd(null, $return[$loop]['id'],null,true));
 						log::add('CaveVin','debug',$Qts.' bouteille(s) de'.$return[$loop]['Nom'].' ont été trouvé');
 						$QtsTypeVin=$QtsTypeVin+$Qts;
 					}
