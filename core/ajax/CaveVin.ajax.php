@@ -18,9 +18,9 @@ try {
 			break;
 		}
 		for($loop=0;$loop<count($return);$loop++){
-		/*	if(isset($return[$loop]['QtsTypeVin']))
+			if(isset($return[$loop]['QtsTypeVin']))
 				$QtsTypeVin=intval($return[$loop]['QtsTypeVin']);
-			else*/
+			else
 				$QtsTypeVin=0;
 			$Caves=eqLogic::byType('CaveVin');
 			if (is_object($Caves))
