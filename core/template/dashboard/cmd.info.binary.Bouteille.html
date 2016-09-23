@@ -5,9 +5,10 @@
 	<script>
 		$(".iconCmd#id#").empty();
 		if ("#state#" == "1") {
-			$(".iconCmd#id#").append("<img width='50' src='./plugins/CaveVin/core/template/images/CasierPlein.png'>");
+			$(".iconCmd#id#").append($("<img width='50' src='./plugins/CaveVin/core/template/images/CasierPlein.png'>")
+				.text("0"));
 		} else {
-			$(".iconCmd#id#").append("<img width='50' src='./plugins/CaveVin/core/template/images/CasierVide.png'>");
+			$(".iconCmd#id#").append("<img width='50' src='./plugins/CaveVin/core/template/images/Casier#Couleur#.png'>");
 		}
 		$('.cmd[data-cmd_id=#id#]').on('click', function() {
 			logement='#id#';
