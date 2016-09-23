@@ -20,12 +20,13 @@ try {
 		for($loop=0;$loop<count($return);$loop++){
 			$QtsTypeVin=0;
 			$Caves=eqLogic::byType('CaveVin');
-			if (is_array($Caves))
-			{
-				log::add('CaveVin','debug',count($Caves).' cave(s) a été trouvé');
+			if (is_array($Caves)){
 				foreach ($Caves as $Cave){
-					log::add('CaveVin','debug',count($Cave->getCmd(null, $return[$loop]['id'],null,true)).' bouteille(s) a été trouvé');
-					$QtsTypeVin=$QtsTypeVin+count($Cave->getCmd(null, $return[$loop]['id']));
+					if (is_object($Cave)){
+						$Qts=count($Cave->getCmd(null, $return[$loop]['id'],null,true))
+						log::add('CaveVin','debug',$Qts.' bouteille(s) de'.$return[$loop]['Nom'].' ont été trouvé');
+						$QtsTypeVin=$QtsTypeVin+$Qts;
+					}
 				}
 			}
 			$return[$loop]['QtsTypeVin']=$QtsTypeVin;
