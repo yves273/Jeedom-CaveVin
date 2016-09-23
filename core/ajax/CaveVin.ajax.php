@@ -23,7 +23,7 @@ try {
 			else
 				$QtsTypeVin=0;
 			$Caves=eqLogic::byType('CaveVin');
-			if (is_object($Caves))
+			if (is_array($Caves))
 			{
 				log::add('CaveVin','debug',count($Caves).' cave(s) a été trouvé');
 				foreach ($Caves as $Cave){
