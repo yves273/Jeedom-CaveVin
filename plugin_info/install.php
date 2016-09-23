@@ -52,16 +52,6 @@ function CaveVin_install() {
 		$sql = "ALTER TABLE `mesVin` ADD `Garde` text COLLATE 'utf8_general_ci' NULL;";
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	}
-	foreach(eqLogic::byType('CaveVin') as $Equipement){
-		$Equipement->StartDemon();	
-		/*foreach($Equipement->getCmd() as $Commande){
-			if($Commande->getLogicalId()!=''){
-				$vin=mesVin::byName($Commande->getLogicalId());
-				if(is_object($vin))
-					$Commande->setLogicalId($vin->getId());
-			
-		}}*/
-	}
 }
 
 function CaveVin_update() {
@@ -98,31 +88,5 @@ function CaveVin_update() {
 		$sql = "ALTER TABLE `mesVin` ADD `Garde` text COLLATE 'utf8_general_ci' NULL;";
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	}
-	foreach(eqLogic::byType('CaveVin') as $Equipement){
-		$Equipement->StartDemon();
-		/*foreach($Equipement->getCmd() as $Commande){
-			if($Commande->getLogicalId()!=''){
-				$vin=mesVin::byName($Commande->getLogicalId());
-				//if(is_object($vin))
-					$Commande->setLogicalId($vin->getId());
-			}
-		}*/
-	}
 }
-
-
-function CaveVin_remove() {
-	$cron = cron::byClassAndFunction('CaveVin', 'DemonManual');
-    if (is_object($cron)) {
-		$cron->stop();
-        $cron->remove();
-    }
-	$cron = cron::byClassAndFunction('CaveVin', 'DemonGPIO');
-    if (is_object($cron)) {
-		$cron->stop();
-        $cron->remove();
-    }
-    
-}
-
 ?>
