@@ -18,14 +18,15 @@ try {
 			break;
 		}
 		for($loop=0;$loop<=count($return);$loop++){
-			$return[$loop]['QtsTypeVin']=0;
+			$QtsTypeVin=intval($return[$loop]['QtsTypeVin']);
 			$Caves=eqLogic::byType('CaveVin');
 			if (is_object($Caves))
 			{
 				foreach ($Caves as $Cave){
-					$return[$loop]['QtsTypeVin']+=count($Cave->getCmd(null, $return['id']));
+					$QtsTypeVin=$QtsTypeVin+count($Cave->getCmd(null, $return['id']));
 				}
 			}
+			$return[$loop]['QtsTypeVin']=$QtsTypeVin;
 		}
         ajax::success(jeedom::toHumanReadable($return));
 	}
