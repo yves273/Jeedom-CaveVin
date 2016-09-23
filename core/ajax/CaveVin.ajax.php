@@ -25,7 +25,9 @@ try {
 			$Caves=eqLogic::byType('CaveVin');
 			if (is_object($Caves))
 			{
+				log::add('CaveVin','debug',count($Caves).' cave(s) a été trouvé');
 				foreach ($Caves as $Cave){
+					log::add('CaveVin','debug',count($Cave->getCmd(null, $return[$loop]['id'])).' bouteille(s) a été trouvé');
 					$QtsTypeVin=$QtsTypeVin+count($Cave->getCmd(null, $return[$loop]['id']));
 				}
 			}
