@@ -1,10 +1,10 @@
 <?php
 try {
 	require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
-    include_file('core', 'authentification', 'php');
+    	include_file('core', 'authentification', 'php');
 	include_file('core', 'mesVin', 'class', 'CaveVin');
 
-    if (!isConnect()) {
+    	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 
@@ -26,15 +26,15 @@ try {
 			if (is_object($Caves))
 			{
 				foreach ($Caves as $Cave){
-					$QtsTypeVin=$QtsTypeVin+count($Cave->getCmd(null, $return['id']));
+					$QtsTypeVin=$QtsTypeVin+count($Cave->getCmd(null, $return[$loop]['id']));
 				}
 			}
 			$return[$loop]['QtsTypeVin']=$QtsTypeVin;
 		}
-        ajax::success(jeedom::toHumanReadable($return));
+        	ajax::success(jeedom::toHumanReadable($return));
 	}
 	if (init('action') == 'getVinInformation') {	
-        ajax::success(jeedom::toHumanReadable(utils::o2a(mesVin::byId(init('id')))));
+		ajax::success(jeedom::toHumanReadable(utils::o2a(mesVin::byId(init('id')))));
 	}
 	if (init('action') == 'gestionBouteille') {
 		$Commande = cmd::byId(init('logement'));
@@ -51,25 +51,24 @@ try {
 			ajax::success(false);
 	}
 	if (init('action') == 'updateVin') {
-	
-        $mesmesVinave = json_decode(init('event'), true);
-        $mesVin = null;
-        if (isset($mesmesVinave['id'])) {
-            $mesVin = mesVin::byId($mesmesVinave['id']);
-        }
-        if (!is_object($mesVin)) {
-            $mesVin = new mesVin();
-        }
-        utils::a2o($mesVin, jeedom::fromHumanReadable($mesmesVinave));
-        $mesVin->save();
-        ajax::success(jeedom::toHumanReadable(utils::o2a($mesVin)));
-    }
+	        $mesmesVinave = json_decode(init('event'), true);
+	        $mesVin = null;
+	        if (isset($mesmesVinave['id'])) {
+	            $mesVin = mesVin::byId($mesmesVinave['id']);
+	        }
+	        if (!is_object($mesVin)) {
+	            $mesVin = new mesVin();
+	        }
+	        utils::a2o($mesVin, jeedom::fromHumanReadable($mesmesVinave));
+	        $mesVin->save();
+	        ajax::success(jeedom::toHumanReadable(utils::o2a($mesVin)));
+    	}
 	if (init('action') == 'removeVin') {
-           $mesVin = mesVin::byId(init('id'));
-        if (is_object($mesVin))
+	        $mesVin = mesVin::byId(init('id'));
+	        if (is_object($mesVin))
 			$mesVin->remove();
-        ajax::success();
-    }
+	        ajax::success();
+	}	
   	if (init('action') == 'getWidget') {
 		$CaveWidget=eqLogic::byId(init('id'));
 		if (is_object($CaveWidget))
@@ -77,8 +76,8 @@ try {
 			ajax::success($CaveWidget->toHtml('dashboard',false));
 		}
 		ajax::success(false);
-    }
-    if (init('action') == 'uploadEttiquette') {
+    	}
+    	if (init('action') == 'uploadEttiquette') {
 		$uploaddir = dirname(__FILE__) . '/../../images';
 		if (!file_exists($uploaddir)) {
 			mkdir($uploaddir);
