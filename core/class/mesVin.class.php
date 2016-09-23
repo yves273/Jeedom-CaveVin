@@ -166,7 +166,7 @@ class mesVin {
 		if (is_array($Caves)){
 			foreach ($Caves as $Cave){
 				if (is_object($Cave)){
-					$Qts=count($Cave->getCmd(null, $return[$loop]['id'],null,true));
+					$Qts=count($Cave->getCmd(null, $this->id,null,true));
 					$QtsTypeVin=$QtsTypeVin+$Qts;
 				}
 			}
