@@ -18,16 +18,13 @@ try {
 			break;
 		}
 		for($loop=0;$loop<count($return);$loop++){
-			if(isset($return[$loop]['QtsTypeVin']))
-				$QtsTypeVin=intval($return[$loop]['QtsTypeVin']);
-			else
-				$QtsTypeVin=0;
+			$QtsTypeVin=0;
 			$Caves=eqLogic::byType('CaveVin');
 			if (is_array($Caves))
 			{
 				log::add('CaveVin','debug',count($Caves).' cave(s) a été trouvé');
 				foreach ($Caves as $Cave){
-					log::add('CaveVin','debug',count($Cave->getCmd(null, $return[$loop]['id'])).' bouteille(s) a été trouvé');
+					log::add('CaveVin','debug',count($Cave->getCmd(null, $return[$loop]['id'],null,true)).' bouteille(s) a été trouvé');
 					$QtsTypeVin=$QtsTypeVin+count($Cave->getCmd(null, $return[$loop]['id']));
 				}
 			}
