@@ -72,9 +72,9 @@ $eqLogics = eqLogic::byType('CaveVin');
 				<div class="form-group">
 					<label class="col-sm-3 control-label" ></label>
 					<div class="col-sm-9">
-						<label>{{Activer}</label>
+						<label>{{Activer}}</label>
 						<input type="checkbox" class="eqLogicAttr" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
-						<label>{{Visible}</label>
+						<label>{{Visible}}</label>
 						<input type="checkbox" class="eqLogicAttr" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
 					</div>
 				</div>
