@@ -4,6 +4,11 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 include_file('core', 'authentification', 'php');
 include_file('core', 'mesVin', 'class', 'CaveVin');
 class CaveVin extends eqLogic {
+	public static $_widgetPossibility = array('custom' => array(
+	        'visibility' => true,
+	        'displayName' => true,
+	        'optionalParameters' => true,
+	));
 	public static function AddCommande($eqLogic,$Name) {
 		$Commande = CaveVinCmd::byEqLogicIdCmdName($eqLogic->getId(),$Name);//$eqLogic->getCmd(null,$_logicalId);
 		if (!is_object($Commande))
