@@ -40,38 +40,7 @@ $('.FicheVinDisplay').load('index.php?v=d&modal=FicheVin.CaveVin&plugin=CaveVin&
 $('.li_eqLogic').on('click', function(){
 	HtmlWidget($(this).attr('data-eqLogic_id'));
 });
-getFiltreVinDisplay();
-/*function getFiltreVinDisplay () {
-	
-	$('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');
-	//$('.FiltreVinDisplay').trigger('update');
-	setTimeout(function() {
-		//getFiltreVinDisplay()
-	}, 1000);
-			
-}	*/
-function getFiltreVinDisplay() {
-	$.ajax({
-		type: 'GET',
-		async: false,
-		url: 'index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin',
-		dataType: 'json',
-		global: false,
-		error: function(request, status, error) {
-			setTimeout(function() {
-				getFiltreVinDisplay()
-			}, 100);
-		},
-		success: function(data) {	
-			$('.FiltreVinDisplay').html(data);	
-			$('.FiltreVinDisplay').trigger('update');
-			setTimeout(function() {
-				getFiltreVinDisplay()
-			}, 1000);
-			
-		}
-	});
-}	
+$('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');	
 function HtmlWidget(idCasier){
 	$.ajax({
 		type: 'POST',            
