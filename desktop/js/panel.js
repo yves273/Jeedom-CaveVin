@@ -46,7 +46,7 @@ function getFiltreVinDisplay () {
 	$('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');
 	//$('.FiltreVinDisplay').trigger('update');
 	setTimeout(function() {
-		getFiltreVinDisplay()
+		//getFiltreVinDisplay()
 	}, 1000);
 			
 }		   
