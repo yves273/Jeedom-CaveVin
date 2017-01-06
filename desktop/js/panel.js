@@ -41,7 +41,7 @@ $('.li_eqLogic').on('click', function(){
 	HtmlWidget($(this).attr('data-eqLogic_id'));
 });
 getFiltreVinDisplay();
-function getFiltreVinDisplay () {
+/*function getFiltreVinDisplay () {
 	
 	$('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');
 	//$('.FiltreVinDisplay').trigger('update');
@@ -49,7 +49,24 @@ function getFiltreVinDisplay () {
 		//getFiltreVinDisplay()
 	}, 1000);
 			
-}		   
+}	*/
+function getFiltreVinDisplay() {
+	$.ajax({
+		type: 'GET',
+		async: false,
+		url: 'index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin',
+		dataType: 'json',
+		global: false,
+		error: function(request, status, error) {
+			setTimeout(function() {
+				getKnxBusMonitor()
+			}, 100);
+		},
+		success: function(data) {
+			
+		}
+	});
+}	
 function HtmlWidget(idCasier){
 	$.ajax({
 		type: 'POST',            
@@ -64,7 +81,11 @@ function HtmlWidget(idCasier){
 		global: false,
 		error: function(request, status, error) {},
 		success: function(data) {	
-			$('.widgetDisplay').html(data.result);		
+			$('.FiltreVinDisplay').html(data);	
+			$('.FiltreVinDisplay').trigger('update');
+			setTimeout(function() {
+				getFiltreVinDisplay()
+			}, 1000);
 		}
 	});
 }
