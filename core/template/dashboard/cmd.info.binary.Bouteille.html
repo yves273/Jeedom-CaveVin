@@ -1,16 +1,19 @@
 <div style="padding:0;width:55px;height:55px;" class="cmd #history# tooltips cmd-widget container-fluid" data-type="info" data-subtype="binary" data-cmd_id="#id#" title="#collectDate#">
 	<div>
 		<div style="position: absolute; left: 50%;top:50%">#NbBouteille#</div>
-		<img class="iconCmd#id#" img-responsive" width='50' src='./plugins/CaveVin/core/template/images/CasierVide.png'>
+		<img class="iconCmd#id# img-responsive" width='50' src='./plugins/CaveVin/core/template/images/CasierVide.png'>
+		<img class="Select#id# img-responsive" width='50' src='./plugins/CaveVin/core/template/images/CasierSelect.png'>
 	</div>
 	<script>
 		$(".iconCmd#id#").empty();
+		$(".Select#id#").hide();
 		if ("#state#" == "1") {
 			$(".iconCmd#id#").attr('src','./plugins/CaveVin/core/template/images/Casier#Couleur#.png');
 		} else {
 			$(".iconCmd#id#").attr('src','./plugins/CaveVin/core/template/images/CasierVide.png');
 		}
 		$('.cmd[data-cmd_id=#id#]').on('click', function() {
+			$(".Select#id#").show();
 			logement='#id#';
 			if (ActiveDialog){
 				$('#md_modal').dialog({
