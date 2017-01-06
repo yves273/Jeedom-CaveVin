@@ -2,7 +2,7 @@
 	<div>
 		<div style="position: absolute;">
 			<img class="SelectCase img-responsive" width='50' src='./plugins/CaveVin/core/template/images/CasierSelect.png'>
-			<div style="left: 50%;top:50%;text-align: center;">
+			<div style="position: absolute;left: 50%;top:50%;text-align: center;">
 				#NbBouteille#
 			</div>
 		</div>
@@ -17,6 +17,7 @@
 			$(".iconCmd#id#").attr('src','./plugins/CaveVin/core/template/images/CasierVide.png');
 		}
 		$('.cmd[data-cmd_id=#id#]').on('click', function() {
+			$(".SelectCase").hide();
 			$(this).parent().find(".SelectCase").show();
 			logement='#id#';
 			if (ActiveDialog){
