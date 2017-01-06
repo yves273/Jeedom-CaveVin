@@ -17,7 +17,7 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 				?>
 			</select>
 		</div>
-		<table class="mesVin" style="width: 100%;">
+		<table class="mesVin" style="width:100%;height: 500px;">
 			<tr>
 				<td colspan="2">	
 					<input type="hidden" class="mesVinAttr form-control" data-l1key="id"/>
