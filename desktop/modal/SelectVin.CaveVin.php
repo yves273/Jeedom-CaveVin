@@ -44,7 +44,11 @@ function UpdateListVin(){
 			},
 		dataType: 'json',
 		global: false,
+		
 		error: function(request, status, error) {
+			setTimeout(function() {
+				UpdateListVin()
+			}, 1000);
 		},
 		success: function(data) {
 			$('.ListeMesVin tbody').html('');
@@ -59,6 +63,9 @@ function UpdateListVin(){
 					$('.ListeMesVin').trigger('update');
 				}
 			});
+			setTimeout(function() {
+				UpdateListVin()
+			}, 1000);
 		}
 	});
 }
