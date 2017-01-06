@@ -4,7 +4,7 @@ if (!isConnect('admin')) {
 }
 include_file('core', 'mesVin', 'class', 'CaveVin');
 ?>
-<table class="ListeMesVin table table-bordered table-condensed tablesorter">
+<table class="ListeMesVin table table-bordered table-condensed tablesorter" style="height: 500px;overflow-y: scroll;">
 	<thead>
 		<tr>
 			<th>{{Nom}}</th>
