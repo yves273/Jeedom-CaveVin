@@ -59,10 +59,15 @@ function getFiltreVinDisplay() {
 		global: false,
 		error: function(request, status, error) {
 			setTimeout(function() {
-				getKnxBusMonitor()
+				getFiltreVinDisplay()
 			}, 100);
 		},
-		success: function(data) {
+		success: function(data) {	
+			$('.FiltreVinDisplay').html(data);	
+			$('.FiltreVinDisplay').trigger('update');
+			setTimeout(function() {
+				getFiltreVinDisplay()
+			}, 1000);
 			
 		}
 	});
@@ -81,11 +86,7 @@ function HtmlWidget(idCasier){
 		global: false,
 		error: function(request, status, error) {},
 		success: function(data) {	
-			$('.FiltreVinDisplay').html(data);	
-			$('.FiltreVinDisplay').trigger('update');
-			setTimeout(function() {
-				getFiltreVinDisplay()
-			}, 1000);
+			$('.widgetDisplay').html(data.result);
 		}
 	});
 }
