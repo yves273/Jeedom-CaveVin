@@ -37,11 +37,10 @@ var logement='';
 $('.FicheVinDisplay').load('index.php?v=d&modal=FicheVin.CaveVin&plugin=CaveVin&type=CaveVin', function() {
 	$('.selecVin').hide();
 });
-$('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');
 $('.li_eqLogic').on('click', function(){
 	HtmlWidget($(this).attr('data-eqLogic_id'));
 });
-
+$('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');	
 function HtmlWidget(idCasier){
 	$.ajax({
 		type: 'POST',            
@@ -56,7 +55,7 @@ function HtmlWidget(idCasier){
 		global: false,
 		error: function(request, status, error) {},
 		success: function(data) {	
-			$('.widgetDisplay').html(data.result);		
+			$('.widgetDisplay').html(data.result);
 		}
 	});
 }

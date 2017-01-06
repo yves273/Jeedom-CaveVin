@@ -40,6 +40,13 @@
 		</legend>
 		<div class="row">
 			<div class="col-lg-6">
+				<legend>{{Mon casier}}</legend>
+				<div class="widgetDisplay"></div>
+			</div>
+			<div class="col-lg-6"></div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
 				<legend>{{Ma liste de vin}}</legend>
 				<div class='FiltreVinDisplay'></div>
 			</div>
@@ -47,13 +54,6 @@
 				<legend>{{Fiche vin}}</legend>
 				<div class='FicheVinDisplay'></div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6">
-				<legend>{{Mon casier}}</legend>
-				<div class="widgetDisplay"></div>
-			</div>
-			<div class="col-lg-6"></div>
 		</div>
 	</div>
 </div>

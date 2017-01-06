@@ -45,6 +45,7 @@ try {
 			$Commande->event(init('status'));
 			$Commande->setLogicalId(init('type'));
 			$Commande->save();
+			$Commande->getEqLogic()->refreshWidget();
 			ajax::success(true);
 		}
 		else
