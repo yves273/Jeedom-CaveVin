@@ -20,7 +20,7 @@ var Vin='';
 var Filtre='';
 UpdateListVin()
 initTableSorter();
-$('.ListeMesVin tr').on( 'click', function() {	
+$('body').on( 'click', '.ListeMesVin tr',function() {	
 	getVinInformation($(this).attr('data_id'));
 });
 $('body').on( 'click','#bt_search', function() {	
@@ -44,7 +44,6 @@ function UpdateListVin(){
 			},
 		dataType: 'json',
 		global: false,
-		
 		error: function(request, status, error) {
 			setTimeout(function() {
 				UpdateListVin()
