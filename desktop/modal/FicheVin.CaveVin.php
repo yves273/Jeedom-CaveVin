@@ -113,10 +113,10 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 			</tr>
 			<tr>
 				<td colspan="2">	
-                    <a class="btn btn-danger mesVinAction" data-action="del"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-                    <a class="btn btn-success mesVinAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-                    <a class="btn btn-danger mesVinAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Enlever}}</a>
-                    <a class="btn btn-success mesVinAction" data-action="add"><i class="fa fa-check-circle"></i> {{Ajouter}}</a>
+                         		<a class="btn btn-danger mesVinAction" data-action="del"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+                         		<a class="btn btn-danger mesVinAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+                        		<a class="btn btn-danger mesVinAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Enlever}}</a>
+                        		<a class="btn btn-danger mesVinAction" data-action="add"><i class="fa fa-check-circle"></i> {{Ajouter}}</a>
 				</td>
 			</tr>
 		</table>
@@ -134,7 +134,7 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 		$('.mesVinAction[data-action=save]').show();
 	});
 	$('.mesVinAction[data-action=update]').on('click', function () {
-        if ($('.mesVinAttr[data-l1key=Nom]').prop("disabled") == false) {
+        	if ($('.mesVinAttr[data-l1key=Nom]').prop("disabled") == false) {
 			$('#bt_uploadEttiquette').hide();
 			$('.mesVinAttr').prop( "disabled", true);
 			//$('.mesVinAction[data-action=remove]').hide();
@@ -214,12 +214,14 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 			});
 	});
 	$('.mesVinAction[data-action=add]').on('click', function () {
-        if(logement!='')
+		if(logement!='')
 			Gestionbouteille(logement,true,$('.mesVinAttr[data-l1key=id]').val());
 		$('#md_modal').dialog( "close" );
 	});
 	$('.mesVinAction[data-action=remove]').on('click', function () {
-      	Gestionbouteille(logement,false,'');
+		alert ('test : ' + logement);
+		if(logement!='')
+      			Gestionbouteille(logement,false,'');
 		$('#md_modal').dialog( "close" );
 	});
 	function Gestionbouteille(logement,status,typeVin) {
@@ -228,18 +230,17 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 				type: 'POST',            
 				async: false,
 				url: 'plugins/CaveVin/core/ajax/CaveVin.ajax.php',
-				data:
-					{
+				data:{
 					action: 'gestionBouteille',
 					logement:logement,
 					status:status,
-					type:typeVin,
-					},
+					type:typeVin
+				},
 				dataType: 'json',
 				global: false,
 				error: function(request, status, error) {},
 				success: function(data) {
-					}
+				}
 			});
 		}
 	};
@@ -251,11 +252,10 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 				type: 'POST',            
 				async: false,
 				url: 'plugins/CaveVin/core/ajax/CaveVin.ajax.php',
-				data:
-					{
+				data:{
 					action: 'getVinInformation',
-					id:id,
-					},
+					id:id
+				},
 				dataType: 'json',
 				global: false,
 				error: function(request, status, error) {},
