@@ -114,9 +114,9 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 			<tr>
 				<td colspan="2">	
                          		<a class="btn btn-danger mesVinAction" data-action="del"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
-                         		<a class="btn btn-danger mesVinAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-                        		<a class="btn btn-danger mesVinAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Enlever}}</a>
-                        		<a class="btn btn-danger mesVinAction" data-action="add"><i class="fa fa-check-circle"></i> {{Ajouter}}</a>
+                         		<a class="btn btn-success mesVinAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+                        		<a class="btn btn-warning mesVinAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Enlever}}</a>
+                        		<a class="btn btn-primary mesVinAction" data-action="add"><i class="fa fa-check-circle"></i> {{Ajouter}}</a>
 				</td>
 			</tr>
 		</table>
@@ -219,13 +219,12 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 		$('#md_modal').dialog( "close" );
 	});
 	$('.mesVinAction[data-action=remove]').on('click', function () {
-		alert ('test : ' + logement);
 		if(logement!='')
       			Gestionbouteille(logement,false,'');
 		$('#md_modal').dialog( "close" );
 	});
 	function Gestionbouteille(logement,status,typeVin) {
-		if(logement!="",typeVin!=""){
+		if(logement!=""){
 			$.ajax({
 				type: 'POST',            
 				async: false,
