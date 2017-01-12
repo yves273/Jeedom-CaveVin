@@ -28,9 +28,8 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 				<td style="width: 40%;">
 					<table style="width: 90%;">	
 						<tr>
-							<td>Vinification: </td>
 							<td>
-								<textarea style="width: 90%;" class="mesVinAttr form-control " data-l1key="Vinification" ></textarea>
+								<textarea cols="2" rows="10" class="mesVinAttr form-control " data-l1key="Vinification" ></textarea>
 							</td>
 						</tr>			
 						<tr>	
