@@ -27,102 +27,30 @@ class CaveVin extends eqLogic {
 		}
 		return $Commande;
 	}
-	public static function DemonGPIO($_option) {
-		$eqLogic=eqLogic::byId($_option['id']);
-		for($widthCase=1;$widthCase<=$eqLogic->getConfiguration('widthCase');$widthCase++){
-			//Activer la ligne GPIO $widthCase
-			switch($widthCase){
-				case 1:
-					$CurentGpio=0;
-					$OldGpio=$eqLogic->getConfiguration('widthCase')-1;
-				break;
-				case $eqLogic->getConfiguration('widthCase'):
-					$OldGpio=$widthCase-1;
-					$CurentGpio=0;
-				break;
-				default:
-					$CurentGpio=$widthCase-1;
-					$OldGpio=$widthCase-2;
-				break;
-			}
-			self::setPinState($OldGpio,0);
-			self::setPinState($CurentGpio,1);
-			for($heightCase=1;$heightCase<=$eqLogic->getConfiguration('heightCase');$heightCase++){
-				//Lire la ligne GPIO $heightCase
-				$Commande=cmd::byLogicalId($eqLogic->getName().'_'.$widthCase."x".$heightCase)[0];
-				if (is_object($Commande))
-				{
-					$Commande->setCollectDate('');
-					$Commande->event(self::getPinState($eqLogic->getConfiguration('widthCase')+$heightCase));
-					$Commande->save();
-				}
-			}
+	public static function pull($_option) {
+		log::add('CaveVin', 'debug', 'Objet mis à jour => ' . json_encode($_option));
+		$Volet = CaveVin::byId($_option['CaveVin_id']);
+		if (is_object($CaveVin) && $CaveVin->getIsEnable()) {
+			$Commande = cmd::byId($_option['event_id']);
+			if(is_object($Commande)){
+				$Commande->setCollectDate('');
+				$Commande->event($_option['value']);
+				$Commande->save();
+			}	
 		}
 	}
-	public static function DemonManual() {
-		$eqLogics=eqLogic::byType('CaveVin');
-		foreach($eqLogics as $eqLogic){
-			if($eqLogic->getConfiguration('analyse')!='manual'){
-				foreach($eqLogic->getCmd() as $Commande){
-					if (is_object($Commande)){
-						$listener=cmd::byId($Commande->getConfiguration('SortieBoutielle'));
-						if (is_object($listener)){
-							$Commande->setCollectDate('');
-							$Commande->event($listener->execCmd(null,2));
-							$Commande->save();
-						}
-					}
-				}
-			}
-		}
-	}
-	public static function getPinState($GPIO){
-		$commands = array();
-		exec("gpio mode ".$GPIO." in ",$commands,$return);
-		$commands = array();
-		exec("gpio read ".$GPIO,$commands,$return);
-		return ($commands[0]);
-	}
-	public static function setPinState($GPIO,$value){
-		$commands = array();
-		exec("gpio mode ".$GPIO." out ",$commands,$return);
-		$commands = array();
-		exec("gpio write ".$GPIO.' '.$value,$commands,$return);
-	}
-	public function StartDemon() {
-        	/*switch($this->getConfiguration('analyse')){
-			case 'manual':
-				$cron = cron::byClassAndFunction('CaveVin', 'DemonManual');
-				if (!is_object($cron)) {
-					$cron = new cron();
-					$cron->setClass('CaveVin');
-					$cron->setFunction('DemonManual');
-					$cron->setEnable(1);
-					$cron->setSchedule('* * * * *');
-					$cron->setTimeout('60');
-					$cron->save();
-					$cron->start();
-					$cron->run();
-				}
-			break;
-			case 'local':
-				$cron = cron::byClassAndFunction('CaveVin', 'DemonGPIO');
-				if (!is_object($cron)) {
-					$cron = new cron();
-					$cron->setClass('CaveVin');
-					$cron->setFunction('DemonGPIO');
-					$cron->setOption(array('id' => $this->getId()));
-					$cron->setEnable(1);
-					$cron->setSchedule('* * * * *');
-					$cron->setTimeout('60');
-					$cron->save();
-					$cron->start();
-					$cron->run();
-				}
-			break;
-		}*/
-    }
     	public function preSave() {
+		$listener = listener::byClassAndFunction('CaveVin', 'pull', array('CaveVin_id' => intval($this->getId())));
+		if (!is_object($listener))
+		    $listener = new listener();
+		$listener->setClass('CaveVin');
+		$listener->setFunction('pull');
+		$listener->setOption(array('CaveVin_id' => intval($this->getId())));
+		$listener->emptyEvent();
+		foreach($this->getCmd() as $cmd){
+			$listener->addEvent(str_replace('#','',$cmd->getConfiguraion('SortieBoutielle')));
+		}
+		$listener->save();	
 		for($heightCase=1;$heightCase<=$this->getConfiguration('heightCase');$heightCase++){
 			for($widthCase=1;$widthCase<=$this->getConfiguration('widthCase');$widthCase++){
 				$Name=$this->getName().'_'.$widthCase."x".$heightCase;
@@ -131,12 +59,6 @@ class CaveVin extends eqLogic {
 		}
     	}
   	public function toHtml($_version = 'mobile',$Dialog=true) {
-	/*	if ($this->getIsEnable() != 1) {
-			return '';
-		}
-		if (!$this->hasRight('r')) {
-			return '';
-		}*/
 		$_version = jeedom::versionAlias($_version);
 		$replace = array(
 			'#id#' => $this->getId(),

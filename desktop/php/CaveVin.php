@@ -90,14 +90,9 @@ $eqLogics = eqLogic::byType('CaveVin');
                         <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="heightCase" placeholder="Nombre de bouteilles"/>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">{{Domotisé par}}</label>
-                    <div class="col-sm-3">
-						<select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="analyse">
-							<option value="manual">{{En manuel}}</option>
-							<option value="local">{{GPIO en local}}</option>
-						</select>
-                    </div>
+                <div class="form-actions">
+                    <a class="btn btn-danger eqLogicAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+                    <a class="btn btn-success eqLogicAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
                 </div>
             </fieldset>
         </form>
