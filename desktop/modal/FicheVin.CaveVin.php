@@ -26,9 +26,21 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 			</tr>
 			<tr>
 				<td style="width: 40%;">
-					<input id="bt_uploadEttiquette" type="file" name="file" data-url="plugins/CaveVin/core/ajax/CaveVin.ajax.php?action=uploadEttiquette"/>
-					<input class="mesVinAttr form-control" type="hidden" data-l1key="Ettiquette"/>
-					<img class="imgEttiquette" style="width: 90%;">
+					<table style="width: 90%;">	
+						<tr>
+							<td>Vinification: </td>
+							<td>
+								<textarea style="width: 90%;" class="mesVinAttr form-control " data-l1key="Vinification" ></textarea>
+							</td>
+						</tr>			
+						<tr>	
+							<td>
+								<input id="bt_uploadEttiquette" type="file" name="file" data-url="plugins/CaveVin/core/ajax/CaveVin.ajax.php?action=uploadEttiquette"/>
+								<input class="mesVinAttr form-control" type="hidden" data-l1key="Ettiquette"/>
+								<img class="imgEttiquette" style="width: 90%;">			
+							</td>	
+						</tr>
+					</table>
 				</td>
 				<td style="width: 60%;">
 					<table style="width: 90%;">				
@@ -64,12 +76,6 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 							<td>Degre Alcoolique: </td>
 							<td>
 								<input type="text" class="mesVinAttr form-control " data-l1key="DegreAlcoolique" />
-							</td>
-						</tr>
-						<tr>
-							<td>Vinification: </td>
-							<td>
-								<textarea class="mesVinAttr form-control " data-l1key="Vinification" ></textarea>
 							</td>
 						</tr>
 						<tr>
