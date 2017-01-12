@@ -69,7 +69,7 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 						<tr>
 							<td>Vinification: </td>
 							<td>
-								<input type="text" class="mesVinAttr form-control " data-l1key="Vinification" />
+								<textarea class="mesVinAttr form-control " data-l1key="Vinification" ></textarea>
 							</td>
 						</tr>
 						<tr>
