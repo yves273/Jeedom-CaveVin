@@ -48,7 +48,7 @@ class CaveVin extends eqLogic {
 		$listener->setOption(array('CaveVin_id' => intval($this->getId())));
 		$listener->emptyEvent();
 		foreach($this->getCmd() as $cmd){
-			$listener->addEvent(str_replace('#','',$cmd->getConfiguraion('SortieBoutielle')));
+			$listener->addEvent(str_replace('#','',$cmd->getConfiguration('SortieBoutielle')));
 		}
 		$listener->save();	
 		for($heightCase=1;$heightCase<=$this->getConfiguration('heightCase');$heightCase++){
