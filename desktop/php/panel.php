@@ -41,15 +41,15 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<legend>{{Mon casier}}</legend>
-				<div class="widgetDisplay"></div>
+				<div class="widgetDisplay" style="height: 500px;overflow-y: scroll;"></div>
 			</div>
 			<div class="col-lg-6">
 				<legend>{{Ma liste de vin}}</legend>
-				<div class='FiltreVinDisplay'></div>
+				<div class='FiltreVinDisplay' style="height: 500px;overflow-y: scroll;"></div>
 			</div>
 			<div class="col-lg-6">
 				<legend>{{Fiche vin}}</legend>
-				<div class='FicheVinDisplay'></div>
+				<div class='FicheVinDisplay' style="height: 500px;overflow-y: scroll;"></div>
 			</div>
 		</div>
 	</div>
