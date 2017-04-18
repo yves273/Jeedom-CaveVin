@@ -4,6 +4,67 @@
 Et si on domotisait notre cave a vin!
 Ce plugin Jeedom nous permet de creer virtuelement notre cave, si on veux on peut domotiser la présence de la bouteille
 
-== Installation et configuration
+== Configuration
 
-Il n'y a rien a faire de particulier
+=== Creation d'un casier a bouteille
+
+Rendez vous sur la page de configuration Plugins > Organisation > Cave a vin
+image::../images/Lien_Configuration.jpg[]
+
+Créer un nouveau casier, sans oublier de parameter le casier
+
+* Largeur du casier : Nombre de logement de boutielle disponible dans la largeur du casier
+* Hauteur du casier : Nombre de logement de boutielle disponible dans la hauteur du casier
+
+Puis sauvgarder, le plugin vas donc creer de luis meme une commmande pour logement disponible.
+Pour chaqu'une de ses commandes, vous pouvez lui associé une commande jeedom qui mettera a jour automatiquement la présence d'une bouteille
+image::../images/Configuration.jpg[]
+
+
+=== Creation d'une fiche vin
+
+Rendez vous sur le panel du plugin Général > Cave a vin (avec jeedom V3, il faut penser a l'activer dans la configuration du plugin)
+image::../images/Lien_Panel.jpg[]
+
+Sur le panel vous appercevez 3 zones
+* Le widget représantant votre casier
+* Une table permetant de chercher un vin
+* La fiche de vin séléctioné
+image::../images/Panel.jpg[]
+
+Pour cree une nouvelle fiche de vin cliquez sur "Ajouter / modifier" (si une fiche de vin est selectionné alors on editera celle si)
+image::../images/FicheVin.jpg[]
+
+La fiche de vin passera alors en edition et vous pourez la compléter
+
+Nommer votre fiche de vin par le nom du vin puis compléter les informations de la fiche
+
+* Cépage
+* Couleur
+* Millésime
+* Terroir
+* Degre Alcoolique
+* Date d'apogée
+* Date de garde
+* Température idéale de consommation
+* Laisser décanter
+* Plat a associer
+
+Toutes ses information, ormis la couleur, sont informative et c'est a votre convenance de le compléter ou non.
+Vous avez egalement la possibilité d'associer une image de la bouteille ou de l'etiquette afin de la repere facilement
+Vous pouvez egalement inclure vos remarques
+
+N'oubliez pas de sauvegarder votre fiche
+
+=== Association d'une bouteille a son logement dans le casier
+
+L'association est simple et se fait egalement depuis le panel.
+
+Cliquez sur un logement (vide ou non, on peut remplacer une bouteil pour une autre si on veut)
+Lorsque le logement est séléctioné il est souligné en bleu
+Choisisser dans la liste de vos vin celui que vous voulez assosier a ce logment
+Cliquer sur "Ajouter" en bas de la liste de vin
+
+Vous allez voir que le widget vas ce mettre a jours en remplissant le casier de la couleur du vin et en idiquant le nombre de bouteille identique
+
+image::../images/Widget.jpg[]
