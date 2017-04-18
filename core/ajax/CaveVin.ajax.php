@@ -44,8 +44,8 @@ try {
 			$Commande->setCollectDate('');
 			$Commande->event(init('status'));
 			$Commande->setLogicalId(init('type'));
-			$Commande->save();
 			$Commande->getEqLogic()->refreshWidget();
+			$Commande->save();
 			ajax::success(true);
 		}
 		else
