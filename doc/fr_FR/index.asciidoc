@@ -1,0 +1,9 @@
+= Cave a vin
+
+== Description
+Et si on domotisait notre cave a vin!
+Ce plugin Jeedom nous permet de creer virtuelement notre cave, si on veux on peut domotiser la présence de la bouteille
+
+== Installation et configuration
+
+Il n'y a rien a faire de particulier
