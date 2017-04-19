@@ -23,6 +23,7 @@ image::../images/Configuration.jpg[]
 === Création d'une fiche vin
 
 Rendez vous sur le panel du plugin Général > Cave à vin (avec jeedom V3, il faut penser à l'activer dans la configuration du plugin)
+
 image::../images/Lien_Panel.jpg[]
 
 Sur le panel vous appercevez 3 zones
