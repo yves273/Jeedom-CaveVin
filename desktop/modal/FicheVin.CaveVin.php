@@ -36,7 +36,7 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 							<td>
 								<input id="bt_uploadEttiquette" type="file" name="file" data-url="plugins/CaveVin/core/ajax/CaveVin.ajax.php?action=uploadEttiquette"/>
 								<input class="mesVinAttr form-control" type="hidden" data-l1key="Ettiquette"/>
-								<img class="imgEttiquette" style="width:40%;">			
+								<img class="imgEttiquette" style="width:80%;">			
 							</td>	
 						</tr>
 					</table>
