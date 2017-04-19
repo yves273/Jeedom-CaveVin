@@ -22,13 +22,13 @@ function addCmdToTable(_cmd) {
 	var tr =$('<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">');
 	tr.append($('<td>')
 		.append($('<input class="cmdAttr form-control input-sm" data-l1key="id" style="display : none;">'))
-		.append($('<input class="cmdAttr form-control input-sm" data-l1key="logicalId" placeholder="{{Pas de vin ajouté a ce casier}}" title="Vin associé" disabled>'))
+		.append($('<input class="cmdAttr form-control input-sm" data-l1key="logicalId" placeholder="{{Pas de vin ajouté à ce casier}}" title="Vin associé" disabled>'))
 		.append($('<input class="cmdAttr form-control input-sm" data-l1key="name" value="' + init(_cmd.name) + '" placeholder="{{Name}}" title="Name" style="display : none;">'))
 		.append($('<input type="hidden" class="cmdAttr" data-l1key="type" />'))
 		.append($('<input type="hidden" class="cmdAttr" data-l1key="subType" />')));
 	tr.append($('<td>')
 			.append($('<span>')
-				.append($('<label>').text('{{Déclancheur sortie Bouteille}}'))
+				.append($('<label>').text('{{Déclencheur sortie Bouteille}}'))
 				.append($('<input class="cmdAttr form-control input-sm " data-l1key="configuration" data-l2key="SortieBoutielle" style="width : 90%;display : inline-block;margin:5px;">'))
 				.append($('<a style="display : inline-block;margin:5px;"class="btn btn-default btn-xs cursor bt_selectCmdExpression" style="position : relative; top : 3px;" title="{{Rechercher une commande}}" >')
 					.append($('<i class="fa fa-list-alt">')))));
