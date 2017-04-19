@@ -51,7 +51,7 @@ Nommer votre fiche de vin par le nom du vin puis compléter les informations de 
 * Laisser décanter
 * Plat à associer
 
-Toutes ces informations, ormis la couleur, sont informative et c'est a votre convenance de les compléter ou non.
+Toutes ces informations, ormis la couleur, sont informative et c'est à votre convenance de les compléter ou non.
 Vous avez également la possibilité d'associer une image de la bouteille ou de l'etiquette afin de la repérer facilement
 Vous pouvez également inclure vos remarques
 
