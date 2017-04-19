@@ -1,68 +1,71 @@
-= Cave a vin
+= Cave à vin
 
 == Description
-Et si on domotisait notre cave a vin!
-Ce plugin Jeedom nous permet de creer virtuelement notre cave, si on veux on peut domotiser la présence de la bouteille
+Et si on domotisait notre cave à vin!
+Ce plugin Jeedom nous permet de créer virtuelement notre cave, si on veut on peut domotiser la présence de la bouteille
 
 == Configuration
 
-=== Creation d'un casier a bouteille
+=== Création d'un casier à bouteille
 
-Rendez vous sur la page de configuration Plugins > Organisation > Cave a vin
+Rendez vous sur la page de configuration Plugins > Organisation > Cave à vin
 
 image::../images/Lien_Configuration.jpg[]
-Créer un nouveau casier, sans oublier de parameter le casier
+Créer un nouveau casier, sans oublier de paramétrer le casier
 
-* Largeur du casier : Nombre de logement de boutielle disponible dans la largeur du casier
-* Hauteur du casier : Nombre de logement de boutielle disponible dans la hauteur du casier
+* Largeur du casier : Nombre de logement de bouteille disponible dans la largeur du casier
+* Hauteur du casier : Nombre de logement de bouteille disponible dans la hauteur du casier
 
-Puis sauvgarder, le plugin vas donc creer de luis meme une commmande pour logement disponible.
-Pour chaqu'une de ses commandes, vous pouvez lui associé une commande jeedom qui mettera a jour automatiquement la présence d'une bouteille
+Puis sauvgarder, le plugin va donc créer de lui même une commmande pour logement disponible.
+Pour chaqune de ces commandes, vous pouvez lui associé une commande jeedom qui mettera à jour automatiquement la présence d'une bouteille
 
 image::../images/Configuration.jpg[]
-=== Creation d'une fiche vin
+=== Création d'une fiche vin
 
-Rendez vous sur le panel du plugin Général > Cave a vin (avec jeedom V3, il faut penser a l'activer dans la configuration du plugin)
+Rendez vous sur le panel du plugin Général > Cave à vin (avec jeedom V3, il faut penser à l'activer dans la configuration du plugin)
+
 image::../images/Lien_Panel.jpg[]
 
 Sur le panel vous appercevez 3 zones
-* Le widget représantant votre casier
-* Une table permetant de chercher un vin
+
+* Le widget représentant votre casier
+* Une table permettant de chercher un vin
 * La fiche de vin séléctioné
 
 image::../images/Panel.jpg[]
-Pour cree une nouvelle fiche de vin cliquez sur "Ajouter / modifier" (si une fiche de vin est selectionné alors on editera celle si)
+Pour créer une nouvelle fiche de vin cliquez sur "Ajouter / modifier" (si une fiche de vin est selectionné alors on éditera celle-ci)
 
 image::../images/FicheVin.jpg[]
-La fiche de vin passera alors en edition et vous pourez la compléter
+La fiche de vin passera alors en édition et vous pourrez la compléter
 
 Nommer votre fiche de vin par le nom du vin puis compléter les informations de la fiche
+
 * Cépage
 * Couleur
 * Millésime
 * Terroir
-* Degre Alcoolique
+* Degré Alcoolique
 * Date d'apogée
 * Date de garde
 * Température idéale de consommation
 * Laisser décanter
-* Plat a associer
+* Plat à associer
 
-Toutes ses information, ormis la couleur, sont informative et c'est a votre convenance de le compléter ou non.
-Vous avez egalement la possibilité d'associer une image de la bouteille ou de l'etiquette afin de la repere facilement
-Vous pouvez egalement inclure vos remarques
+Toutes ces informations, ormis la couleur, sont informative et c'est a votre convenance de les compléter ou non.
+Vous avez également la possibilité d'associer une image de la bouteille ou de l'etiquette afin de la repérer facilement
+Vous pouvez également inclure vos remarques
 
 N'oubliez pas de sauvegarder votre fiche
 
-=== Association d'une bouteille a son logement dans le casier
+=== Association d'une bouteille à son logement dans le casier
 
-L'association est simple et se fait egalement depuis le panel.
+L'association est simple et se fait également depuis le panel.
 
-Cliquez sur un logement (vide ou non, on peut remplacer une bouteil pour une autre si on veut)
-Lorsque le logement est séléctioné il est souligné en bleu
-Choisisser dans la liste de vos vin celui que vous voulez assosier a ce logment
+Cliquez sur un logement (vide ou non, on peut remplacer une bouteille pour une autre si on veut)
+Lorsque le logement est séléctioné, il est souligné en bleu
+Choisisser dans la liste de vos vins celui que vous voulez associer à ce logement
 Cliquer sur "Ajouter" en bas de la liste de vin
 
-Vous allez voir que le widget vas ce mettre a jours en remplissant le casier de la couleur du vin et en idiquant le nombre de bouteille identique
+Vous allez voir que le widget va ce mettre à jours en remplissant le casier de la couleur du vin et en indiquant le nombre de bouteille identique
 
 image::../images/Widget.jpg[]
