@@ -1,10 +1,10 @@
-= Cave à vin
+= Weinkeller
 
 == Beschreibung
 Et si on domotisait notre cave à vin!
 Ce plugin Jeedom nous permet de créer virtuelement notre cave, si on veut on peut domotiser la présence de la bouteille
 
-== Configuration
+== Konfiguration
 
 === Création d'un casier à bouteille
 
