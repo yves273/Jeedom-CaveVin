@@ -17,48 +17,37 @@ class mesVin {
 	private $Garde;
 
 	public static function byId($_id) {
-        $values = array(
-            'id' => $_id
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM mesVin
-        WHERE id=:id';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-    }
+		$values = array(
+			'id' => $_id
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM mesVin WHERE id=:id';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
 	public static function byName($_name) {
-        $values = array(
-            'Nom' => $_name
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM mesVin
-        WHERE Nom=:Nom';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-    }
+		$values = array(
+			'Nom' => $_name
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM mesVin WHERE Nom=:Nom';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
 	public static function byMet($_met) {
-        $values = array(
-            'met' => $_name
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM mesVin
-        WHERE Met=:Met';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-    }
+		$values = array(
+			'met' => $_name
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM mesVin WHERE Met=:Met';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
 	public static function byMillesime($_millesime) {
-        $values = array(
-            'Millesime' => $_millesime
-            );
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM mesVin
-        WHERE Millesime=:Millesime';
-        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
-    }
+		$values = array(
+			'Millesime' => $_millesime
+		);
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM mesVin WHERE Millesime=:Millesime';
+		return DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW, PDO::FETCH_CLASS, __CLASS__);
+	}
 	public static function all() {
-		
-        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
-        FROM mesVin ORDER BY Nom';
-		
-        return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
-    }
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . ' FROM mesVin ORDER BY Nom';
+		return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
 	public function remove() {
 		return DB::remove($this);
 	}
