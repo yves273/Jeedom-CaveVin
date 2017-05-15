@@ -7,7 +7,11 @@ try {
     	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
+	if (init('action') == 'ExportVins') {	
+		$sql="mysqldump -r /var/www/html/tmp/mesVin.sql jeedom mesVin";
+		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+        	ajax::success("/var/www/html/tmp/mesVin.sql");
+	}
 	if (init('action') == 'getFiltreVins') {	
 		switch(init('Filtre')){
 			case "met":
