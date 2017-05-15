@@ -8,8 +8,10 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	if (init('action') == 'ExportVins') {	
-		$sql="mysqldump -r /var/www/html/tmp/mesVin.sql jeedom mesVin";
-		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
+		$mesVin=mesVin::all();
+		$fp = fopen("/var/www/html/tmp/mesVin.sql",  "a");
+		fputs($fp, json_encode($mesVin);
+		fclose($fp);
         	ajax::success("/var/www/html/tmp/mesVin.sql");
 	}
 	if (init('action') == 'getFiltreVins') {	
