@@ -41,6 +41,24 @@ $('.li_eqLogic').on('click', function(){
 	HtmlWidget($(this).attr('data-eqLogic_id'));
 });
 $('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');	
+$('.mesVinAction[data-action=exporter]').on('click', function () {
+	$.ajax({
+		type: 'POST',            
+		async: false,
+		url: 'plugins/CaveVin/core/ajax/CaveVin.ajax.php',
+		data:
+			{
+			action: 'ExportVins'
+			},
+		dataType: 'json',
+		global: false,
+		error: function(request, status, error) {},
+		success: function(data) {	
+			$('body').load('core/php/downloadFile.php?pathfile='+data.result);
+		}
+	});
+
+});
 function HtmlWidget(idCasier){
 	$.ajax({
 		type: 'POST',            
