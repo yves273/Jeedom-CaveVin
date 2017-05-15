@@ -9,8 +9,8 @@ try {
 	}
 	if (init('action') == 'ExportVins') {	
 		$mesVin=mesVin::all();
-		$fp = fopen("/var/www/html/tmp/mesVin.sql",  "a");
-		fputs($fp, json_encode($mesVin);
+		$fp = fopen("/var/www/html/tmp/mesVin.sql",  "w");
+		fputs($fp, json_encode($mesVin));
 		fclose($fp);
         	ajax::success("/var/www/html/tmp/mesVin.sql");
 	}
