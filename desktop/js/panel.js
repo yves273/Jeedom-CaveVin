@@ -54,7 +54,10 @@ $('.mesVinAction[data-action=exporter]').on('click', function () {
 		global: false,
 		error: function(request, status, error) {},
 		success: function(data) {	
-			$('body').load('core/php/downloadFile.php?pathfile='+data.result);
+			$.ajax({
+				type: 'GET',            
+				url: 'core/php/downloadFile.php?pathfile='+data.result,
+			});
 		}
 	});
 
