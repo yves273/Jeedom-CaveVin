@@ -7,7 +7,13 @@ try {
     	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-
+	if (init('action') == 'ExportVins') {	
+		$mesVin=mesVin::all();
+		$fp = fopen("/var/www/html/tmp/mesVin.sql",  "w");
+		fputs($fp, json_encode($mesVin));
+		fclose($fp);
+        	ajax::success("/var/www/html/tmp/mesVin.sql");
+	}
 	if (init('action') == 'getFiltreVins') {	
 		switch(init('Filtre')){
 			case "met":

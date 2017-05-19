@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3.dev">
-<title>Cave a vin</title>
+<title>Weinkeller</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -412,30 +412,174 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Cave a vin</h1>
+<h1>Weinkeller</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table des matières</div>
 <ul class="sectlevel1">
-<li><a href="#_description">1. Description</a></li>
-<li><a href="#_installation_et_configuration">2. Installation et configuration</a></li>
+<li><a href="#_beschreibung">1. Beschreibung</a></li>
+<li><a href="#_konfiguration">2. Konfiguration</a>
+<ul class="sectlevel2">
+<li><a href="#_création_d_un_casier_à_bouteille">2.1. Création d&#8217;un casier à bouteille</a></li>
+<li><a href="#_création_d_une_fiche_vin">2.2. Création d&#8217;une fiche vin</a></li>
+<li><a href="#_association_d_une_bouteille_à_son_logement_dans_le_casier">2.3. Association d&#8217;une bouteille à son logement dans le casier</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_description">1. Description</h2>
+<h2 id="_beschreibung">1. Beschreibung</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Et si on domotisait notre cave a vin!
-Ce plugin Jeedom nous permet de creer virtuelement notre cave, si on veux on peut domotiser la présence de la bouteille</p>
+<p>Et si on domotisait notre cave à vin!
+Ce plugin Jeedom nous permet de créer virtuelement notre cave, si on veut on peut domotiser la présence de la bouteille</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_installation_et_configuration">2. Installation et configuration</h2>
+<h2 id="_konfiguration">2. Konfiguration</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_création_d_un_casier_à_bouteille">2.1. Création d&#8217;un casier à bouteille</h3>
 <div class="paragraph">
-<p>Il n&#8217;y a rien a faire de particulier</p>
+<p>Rendez vous sur la page de configuration Plugins &gt; Organisation &gt; Cave à vin</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Lien_Configuration.jpg" alt="Lien Configuration">
+</div>
+</div>
+<div class="paragraph">
+<p>Créer un nouveau casier, sans oublier de paramétrer le casier</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Largeur du casier : Nombre de logement de bouteille disponible dans la largeur du casier</p>
+</li>
+<li>
+<p>Hauteur du casier : Nombre de logement de bouteille disponible dans la hauteur du casier</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Puis sauvgarder, le plugin va donc créer de lui même une commmande pour logement disponible.
+Pour chaqune de ces commandes, vous pouvez lui associé une commande jeedom qui mettera à jour automatiquement la présence d&#8217;une bouteille</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Configuration.jpg" alt="Configuration">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_création_d_une_fiche_vin">2.2. Création d&#8217;une fiche vin</h3>
+<div class="paragraph">
+<p>Rendez vous sur le panel du plugin Général &gt; Cave à vin (avec jeedom V3, il faut penser à l&#8217;activer dans la configuration du plugin)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Lien_Panel.jpg" alt="Lien Panel">
+</div>
+</div>
+<div class="paragraph">
+<p>Sur le panel vous appercevez 3 zones</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le widget représentant votre casier</p>
+</li>
+<li>
+<p>Une table permettant de chercher un vin</p>
+</li>
+<li>
+<p>La fiche de vin séléctioné</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Panel.jpg" alt="Panel">
+</div>
+</div>
+<div class="paragraph">
+<p>Pour créer une nouvelle fiche de vin cliquez sur "Ajouter / modifier" (si une fiche de vin est selectionné alors on éditera celle-ci)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FicheVin.jpg" alt="FicheVin">
+</div>
+</div>
+<div class="paragraph">
+<p>La fiche de vin passera alors en édition et vous pourrez la compléter</p>
+</div>
+<div class="paragraph">
+<p>Nommer votre fiche de vin par le nom du vin puis compléter les informations de la fiche</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cépage</p>
+</li>
+<li>
+<p>Couleur</p>
+</li>
+<li>
+<p>Millésime</p>
+</li>
+<li>
+<p>Terroir</p>
+</li>
+<li>
+<p>Degré Alcoolique</p>
+</li>
+<li>
+<p>Date d&#8217;apogée</p>
+</li>
+<li>
+<p>Date de garde</p>
+</li>
+<li>
+<p>Température idéale de consommation</p>
+</li>
+<li>
+<p>Laisser décanter</p>
+</li>
+<li>
+<p>Plat à associer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Toutes ces informations, ormis la couleur, sont informative et c&#8217;est à votre convenance de les compléter ou non.
+Vous avez également la possibilité d&#8217;associer une image de la bouteille ou de l&#8217;etiquette afin de la repérer facilement
+Vous pouvez également inclure vos remarques</p>
+</div>
+<div class="paragraph">
+<p>N&#8217;oubliez pas de sauvegarder votre fiche</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_association_d_une_bouteille_à_son_logement_dans_le_casier">2.3. Association d&#8217;une bouteille à son logement dans le casier</h3>
+<div class="paragraph">
+<p>L&#8217;association est simple et se fait également depuis le panel.</p>
+</div>
+<div class="paragraph">
+<p>Cliquez sur un logement (vide ou non, on peut remplacer une bouteille pour une autre si on veut)
+Lorsque le logement est séléctioné, il est souligné en bleu
+Choisisser dans la liste de vos vins celui que vous voulez associer à ce logement
+Cliquer sur "Ajouter" en bas de la liste de vin</p>
+</div>
+<div class="paragraph">
+<p>Vous allez voir que le widget va ce mettre à jours en remplissant le casier de la couleur du vin et en indiquant le nombre de bouteille identique</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Widget.jpg" alt="Widget">
+</div>
+</div>
 </div>
 </div>
 </div>

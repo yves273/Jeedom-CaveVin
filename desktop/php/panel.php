@@ -36,6 +36,9 @@
 				<div class="form-group">
 					<a class="btn btn-success mesVinAction" data-action="update"><i class="fa fa-check-circle"></i> {{Ajouter / modifier}}</a>
 				</div>
+				<div class="form-group">
+					<a class="btn btn-warning mesVinAction" data-action="exporter"><i class="fa fa-check-circle"></i> {{Exporter}}</a>
+				</div>
 			</form>
 		</legend>
 		<div class="row">
