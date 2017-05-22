@@ -8,6 +8,5 @@
 	"category" : "organization",
 	"display" : "panel",
 	"mobile" : "panel",
-	"hasOwnDeamon" : true,
-	"hasDependency" : true
+	"hasOwnDeamon" : true
 }
