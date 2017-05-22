@@ -8,24 +8,34 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	if (init('action') == 'ExportVins') {	
-		$mesVin=utils::o2a(mesVin::all());
-		//$fp = fopen("/var/www/html/tmp/mesVin.sql",  "w");
-		//fputs($fp, json_encode($mesVin));
-		//fclose($fp);
-		$zip = new ZipArchive();
-		if($zip->open('mesVin.zip', ZipArchive::CREATE) == TRUE){
-			$zip->addFromString('mesVin.sql', json_encode($mesVin));
-			while($file = readdir('/var/www/html/plugins/CaveVin/images')) { 
-				if ($file != '.' && $file != '..') { 
-					if (is_file($file)) 
-						$zip -> addFile($dir.$file, $dir.$file); 
-					elseif (is_dir($file)) 
-						$dirs[] = $dir.$file."/"; 
+		$archive_name = "/var/www/html/tmp/mesVin.zip"; // name of zip file
+		$archive_folder = "/var/www/html/plugins/CaveVin/images"; // the folder which you archivate
+
+		$zip = new ZipArchive; 
+		if ($zip -> open($archive_name, ZipArchive::CREATE) === TRUE) { 
+			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
+			$dir = preg_replace('/[\/]{2,}/', '/', $archive_folder."/"); 
+			$dirs = array($dir); 
+			while (count($dirs)) { 
+				$dir = current($dirs); 
+				$zip -> addEmptyDir($dir); 
+				$dh = opendir($dir); 
+				while($file = readdir($dh)) { 
+					if ($file != '.' && $file != '..') { 
+						if (is_file($file)) 
+							$zip -> addFile($dir.$file, $dir.$file); 
+						elseif (is_dir($file)) 
+							$dirs[] = $dir.$file."/"; 
+					} 
 				} 
+				closedir($dh); 
+				array_shift($dirs); 
 			} 
-			$zip->close();
+			
+			$zip -> close(); 
+        		ajax::success("/var/www/html/tmp/mesVin.zip");
 		}
-        	ajax::success("/var/www/html/tmp/mesVin.zip");
+        	ajax::success(false);
 	}
 	if (init('action') == 'getFiltreVins') {	
 		switch(init('Filtre')){
