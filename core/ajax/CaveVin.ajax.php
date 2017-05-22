@@ -11,14 +11,13 @@ try {
 		$zip = new ZipArchive; 
 		if ($zip -> open('/var/www/html/tmp/mesVin.zip', ZipArchive::CREATE) === TRUE) { 
 			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
-			$zip -> addEmptyDir('images'); 
+			$dir='images';
+			$zip->addEmptyDir($dir); 
 			$dh = opendir('../../images'); 
 			while($file = readdir($dh)) { 
 				if ($file != '.' && $file != '..') { 
 					if (is_file($file)) 
-						$zip -> addFile($dir.$file, $dir.$file); 
-					elseif (is_dir($file)) 
-						$dirs[] = $dir.$file."/"; 
+						$zip->addFile($dir.$file, $dir.$file); 
 				} 
 			} 
 			closedir($dh); 
