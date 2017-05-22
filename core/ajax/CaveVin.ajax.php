@@ -8,7 +8,7 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	if (init('action') == 'ExportVins') {	
-		$mesVin=utils::o2a(mesVin::all())
+		$mesVin=utils::o2a(mesVin::all());
 		$fp = fopen("/var/www/html/tmp/mesVin.sql",  "w");
 		fputs($fp, json_encode($mesVin));
 		fclose($fp);
