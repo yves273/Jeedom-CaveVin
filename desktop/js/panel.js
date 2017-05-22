@@ -41,6 +41,27 @@ $('.li_eqLogic').on('click', function(){
 	HtmlWidget($(this).attr('data-eqLogic_id'));
 });
 $('.FiltreVinDisplay').load('index.php?v=d&modal=SelectVin.CaveVin&plugin=CaveVin&type=CaveVin');	
+$('.mesVinAction[data-action=importer]').on('click', function () {	
+	var message=$('<div>')
+	.append($('<input type="file" name="Vins" id="Vins" data-url="plugins/CaveVin/core/ajax/CaveVin.ajax.php?action=ImportVins" placeholder="{{Ficher export}}" class="form-control input-md"/>'));
+	bootbox.dialog({
+		title: "{{Importer une liste de vin}}",
+		height: "auto",
+		width: "auto",
+		message: message
+	});	
+});
+$('#Vins').fileupload({
+	dataType: 'json',
+	replaceFileInput: false,
+	done: function (e, data) {
+		if (data.result.state != 'ok') {
+			$('#div_alert').showAlert({message: data.result.result, level: 'danger'});
+			return;
+			$('#div_alert').showAlert({message: '{{Importation terminé}}', level: 'success'});
+		}
+	}
+});
 $('.mesVinAction[data-action=exporter]').on('click', function () {
 	$.ajax({
 		type: 'POST',            
@@ -54,16 +75,9 @@ $('.mesVinAction[data-action=exporter]').on('click', function () {
 		global: false,
 		error: function(request, status, error) {},
 		success: function(data) {
-			
-   			 window.location.href = 'core/php/downloadFile.php?pathfile='+ encodeURIComponent(data.result);
-			/*$.ajax({
-				type: 'GET',            
-				url: 'core/php/downloadFile.php',
-				data:{pathfile: encodeURIComponent(data.result)},
-			});*/
+			window.location.href = 'core/php/downloadFile.php?pathfile='+ encodeURIComponent(data.result);
 		}
 	});
-
 });
 function HtmlWidget(idCasier){
 	$.ajax({
