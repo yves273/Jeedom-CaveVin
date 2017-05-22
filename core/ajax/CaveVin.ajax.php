@@ -8,8 +8,11 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	if (init('action') == 'ExportVins') {	
+		$file='/var/www/html/tmp/mesVin.zip';
+		if(file_exists($file))
+			unlink($file);
 		$zip = new ZipArchive; 
-		if ($zip -> open('/var/www/html/tmp/mesVin.zip', ZipArchive::CREATE) === TRUE) { 
+		if ($zip->open($file, ZipArchive::CREATE) === TRUE) { 
 			log::add('CaveVin','debug','Création du fichier d\'export');	
 			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
 			$dir=dirname(__FILE__) .'/../../images/';
@@ -19,7 +22,7 @@ try {
 				if ($file != '.' && $file != '..') { 
 					log::add('CaveVin','debug','Ajout a l\'export:'.$dir.$file);		
 					if (is_file($file)) 
-						$zip->addFile($dir.$file,'/images/'.$file); 
+						$zip->addFile($dir.$file,$file); 
 				} 
 			} 
 			closedir($dh); 
