@@ -13,7 +13,7 @@ try {
 			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
 			$dir='images';
 			$zip->addEmptyDir($dir); 
-			$dh = opendir('../../images'); 
+			$dh = opendir(dirname(__FILE__) .'../../images'); 
 			while($file = readdir($dh)) { 
 				if ($file != '.' && $file != '..') { 
 					if (is_file($file)) 
