@@ -8,11 +8,26 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	if (init('action') == 'ExportVins') {	
-		$mesVin=utils::o2a(mesVin::all());
-		$fp = fopen("/var/www/html/tmp/mesVin.sql",  "w");
-		fputs($fp, json_encode($mesVin));
-		fclose($fp);
-        	ajax::success("/var/www/html/tmp/mesVin.sql");
+		$file='/var/www/html/tmp/mesVin.zip';
+		if(file_exists($file))
+			unlink($file);
+		$zip = new ZipArchive; 
+		if ($zip->open($file, ZipArchive::CREATE) === TRUE) { 
+			log::add('CaveVin','debug','Création du fichier d\'export');	
+			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
+			$dir=dirname(__FILE__) .'/../../images/';
+			$dh = opendir($dir); 
+			while($file = readdir($dh)) { 	
+				if ($file != '.' && $file != '..') { 
+					log::add('CaveVin','debug','Ajout a l\'export:'.$dir.$file);	
+					$zip->addFile($dir.$file,'etiquette/'.$file); 
+				} 
+			} 
+			closedir($dh); 
+			$zip -> close(); 
+        		ajax::success("/var/www/html/tmp/mesVin.zip");
+		}
+        	ajax::success(false);
 	}
 	if (init('action') == 'getFiltreVins') {	
 		switch(init('Filtre')){
