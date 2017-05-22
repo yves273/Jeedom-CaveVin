@@ -7,6 +7,29 @@ try {
     	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
+	if (init('action') == 'ImportVins') {
+		if (isset($_FILES['Vins'])){
+			$dir=dirname(__FILE__) .'/../../images/';
+			$File=$_FILES['Vins']['tmp_name'];
+			if (!is_dir($dir)) 
+				mkdir($dir);
+			$zip = new ZipArchive(); 
+			// On ouvre l’archive.
+			if($zip->open($File) == TRUE)
+			{
+				$zip->extractTo($dir);
+				$zip->close();
+				$ListeVins=json_decode(file_get_contents($dir.'mesVin.sql'),true);
+				foreach($ListeVins as $vin){
+	           			$mesVin = new mesVin();
+					utils::a2o($mesVin, jeedom::fromHumanReadable($vin));
+					$mesVin->save();
+				}
+				unlink($dir.'mesVin.sql');
+			}
+		}
+		ajax::success(true);
+	}
 	if (init('action') == 'ExportVins') {	
 		$file='/var/www/html/tmp/mesVin.zip';
 		if(file_exists($file))
