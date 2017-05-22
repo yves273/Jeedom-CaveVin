@@ -21,7 +21,7 @@ try {
 			while($file = readdir($dh)) { 	
 				if ($file != '.' && $file != '..') { 
 					log::add('CaveVin','debug','Ajout a l\'export:'.$dir.$file);	
-					$zip->addFile($dir.$file); 
+					$zip->addFile($dir.$file,'/images/'.$file); 
 				} 
 			} 
 			closedir($dh); 
