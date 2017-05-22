@@ -16,12 +16,11 @@ try {
 			log::add('CaveVin','debug','Création du fichier d\'export');	
 			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
 			$dir=dirname(__FILE__) .'/../../images/';
-			$zip->addEmptyDir('images'); 
 			$dh = opendir($dir); 
 			while($file = readdir($dh)) { 	
 				if ($file != '.' && $file != '..') { 
 					log::add('CaveVin','debug','Ajout a l\'export:'.$dir.$file);	
-					$zip->addFile($dir.$file,$file); 
+					$zip->addFile($dir.$file,'etiquette/'.$file); 
 				} 
 			} 
 			closedir($dh); 
