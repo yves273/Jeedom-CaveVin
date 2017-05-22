@@ -19,7 +19,7 @@ try {
 				if ($file != '.' && $file != '..') { 
 					log::add('CaveVin','debug','Ajout a l\'export:'.$dir.$file);		
 					if (is_file($file)) 
-						$zip->addFile($file); 
+						$zip->addFile($dir.$file,'/images/'.$file); 
 				} 
 			} 
 			closedir($dh); 
