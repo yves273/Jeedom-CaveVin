@@ -9,10 +9,23 @@ try {
 	}
 	if (init('action') == 'ExportVins') {	
 		$mesVin=utils::o2a(mesVin::all());
-		$fp = fopen("/var/www/html/tmp/mesVin.sql",  "w");
-		fputs($fp, json_encode($mesVin));
-		fclose($fp);
-        	ajax::success("/var/www/html/tmp/mesVin.sql");
+		//$fp = fopen("/var/www/html/tmp/mesVin.sql",  "w");
+		//fputs($fp, json_encode($mesVin));
+		//fclose($fp);
+		$zip = new ZipArchive();
+		if($zip->open('mesVin.zip', ZipArchive::CREATE) == TRUE){
+			$zip->addFromString('mesVin.sql', json_encode($mesVin));
+			while($file = readdir('/var/www/html/plugins/CaveVin/images')) { 
+				if ($file != '.' && $file != '..') { 
+					if (is_file($file)) 
+						$zip -> addFile($dir.$file, $dir.$file); 
+					elseif (is_dir($file)) 
+						$dirs[] = $dir.$file."/"; 
+				} 
+			} 
+			$zip->close();
+		}
+        	ajax::success("/var/www/html/tmp/mesVin.zip");
 	}
 	if (init('action') == 'getFiltreVins') {	
 		switch(init('Filtre')){
