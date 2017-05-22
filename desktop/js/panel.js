@@ -53,12 +53,14 @@ $('.mesVinAction[data-action=exporter]').on('click', function () {
 		dataType: 'json',
 		global: false,
 		error: function(request, status, error) {},
-		success: function(data) {	
-			$.ajax({
+		success: function(data) {
+			
+   			 window.location.href = 'core/php/downloadFile.php?pathfile='+ encodeURIComponent(data.result);
+			/*$.ajax({
 				type: 'GET',            
 				url: 'core/php/downloadFile.php',
 				data:{pathfile: encodeURIComponent(data.result)},
-			});
+			});*/
 		}
 	});
 
