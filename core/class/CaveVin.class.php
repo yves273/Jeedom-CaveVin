@@ -33,9 +33,11 @@ class CaveVin extends eqLogic {
 		if (is_object($CaveVin) && $CaveVin->getIsEnable()) {
 			$Commande = cmd::byId($_option['event_id']);
 			if(is_object($Commande)){
-				$Commande->setCollectDate('');
-				$Commande->event($_option['value']);
-				$Commande->save();
+				$array = utils::o2a($Commande);
+				event::add('CaveVin::change', $array);
+				//$Commande->setCollectDate('');
+				//$Commande->event($_option['value']);
+				//$Commande->save();
 			}	
 		}
 	}
