@@ -8,6 +8,5 @@
 	"category" : "organization",
 	"display" : "panel",
 	"mobile" : "panel",
-	"event" : 1,
-	"hasOwnDeamon" : true
+	"event" : 1
 }
