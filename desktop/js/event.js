@@ -11,6 +11,6 @@ $('body').on('CaveVin::change', function (_event,_options) {
 		}
 			$('#md_modal').dialog({title: cmd.name});
 			$('#md_modal').attr('data-clink',cmd.eqLogic_id);
-			$('#md_modal').load('index.php?v=d&plugin=CaveVin&modal=mouvement.CaveVin).dialog('open');
+			$('#md_modal').load('index.php?v=d&plugin=CaveVin&modal=mouvement.CaveVin').dialog('open');
 			
 });
