@@ -1,12 +1,11 @@
 {
 	"id" : "CaveVin",
 	"name" : "Cave à Vin",
-	"description" : "Quel vin j'ai dans ma cave? Une question que tous le monde se pose",
 	"licence" : "AGPL",
 	"author" : "Halbout Michael",
 	"require" : "2.4",
 	"category" : "organization",
 	"display" : "panel",
 	"mobile" : "panel",
-	"hasOwnDeamon" : true
+	"event" : 1
 }
