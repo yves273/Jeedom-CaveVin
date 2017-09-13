@@ -48,8 +48,8 @@ class CaveVin extends eqLogic {
 		}
         	return false;
 	}
-	/*public static function ExportVins() {	
-		/*$file='/tmp/mesVin.zip';
+	public static function ExportVins() {	
+		$file='/tmp/mesVin.zip';
 		if(file_exists($file))
 			unlink($file);
 		$zip = new ZipArchive; 
@@ -69,7 +69,7 @@ class CaveVin extends eqLogic {
         		return $file;
 		}
         	return false;
-	}*/
+	}
 	public static function pull($_option) {
 		log::add('CaveVin', 'debug', 'Objet mis à jour => ' . json_encode($_option));
 		$Volet = CaveVin::byId($_option['CaveVin_id']);
