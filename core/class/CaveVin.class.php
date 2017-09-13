@@ -27,7 +27,7 @@ class CaveVin extends eqLogic {
 		}
 		return $Commande;
 	}
-	/*public static function Import($File) {
+	public static function ImportVins($File) {
 		$dir=dirname(__FILE__) .'/../../images/';
 		if (!is_dir($dir)) 
 			mkdir($dir);
@@ -48,7 +48,7 @@ class CaveVin extends eqLogic {
 		}
         	return false;
 	}
-	public static function Export() {	
+	/*public static function ExportVins() {	
 		/*$file='/tmp/mesVin.zip';
 		if(file_exists($file))
 			unlink($file);
