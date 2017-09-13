@@ -7,13 +7,13 @@ try {
     	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
-	/*if (init('action') == 'ImportVins') {
+	if (init('action') == 'ImportVins') {
 		if (isset($_FILES['Vins']))
-			ajax::success(CaveVin::Import($_FILES['Vins']['tmp_name']));
+			ajax::success(CaveVin::ImportVins($_FILES['Vins']['tmp_name']));
 	}
 	if (init('action') == 'ExportVins') {	
-		ajax::success(CaveVin::Export());
-	}*/
+		ajax::success(CaveVin::ExportVins());
+	}
 	if (init('action') == 'getFiltreVins') {	
 		switch(init('Filtre')){
 			case "met":
