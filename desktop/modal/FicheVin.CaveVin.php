@@ -277,6 +277,10 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 		$('.mesVinAttr').val('');
 		$('.mesVinAttr[data-l1key=Ettiquette]').parent().find('.imgEttiquette').hide();
 		if(id!=''){
+			$('.mesVinAction[data-action=save]').hide();
+			$('.mesVinAction[data-action=del]').hide();
+			$('.mesVinAction[data-action=remove]').show();
+			$('.mesVinAction[data-action=add]').show();
 			$.ajax({
 				type: 'POST',            
 				async: false,
@@ -308,6 +312,11 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 						$('.mesVinAttr[data-l1key=Ettiquette]').parent().find('.imgEttiquette').attr('src',data.result.Ettiquette).show();
 				}
 			});
-		}
+		}else{			
+			$('.mesVinAction[data-action=save]').hide();
+			$('.mesVinAction[data-action=del]').hide();
+			$('.mesVinAction[data-action=remove]').show();
+			$('.mesVinAction[data-action=add]').hide();	
+		}		
 	};
 </script>
