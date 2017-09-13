@@ -28,7 +28,7 @@ class CaveVin extends eqLogic {
 		return $Commande;
 	}
 	public static function Import($File) {
-		$dir=dirname(__FILE__) .'/../../images/';
+		/*$dir=dirname(__FILE__) .'/../../images/';
 		if (!is_dir($dir)) 
 			mkdir($dir);
 		$zip = new ZipArchive(); 
@@ -46,10 +46,10 @@ class CaveVin extends eqLogic {
 			unlink($dir.'mesVin.sql');
 			return true;
 		}
-        	return false;
+        	return false;*/
 	}
 	public static function Export() {	
-		$file='/tmp/mesVin.zip';
+		/*$file='/tmp/mesVin.zip';
 		if(file_exists($file))
 			unlink($file);
 		$zip = new ZipArchive; 
@@ -68,7 +68,7 @@ class CaveVin extends eqLogic {
 			$zip -> close(); 
         		return $file;
 		}
-        	return false;
+        	return false;*/
 	}
 	public static function pull($_option) {
 		log::add('CaveVin', 'debug', 'Objet mis à jour => ' . json_encode($_option));
