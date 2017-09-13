@@ -48,7 +48,7 @@ class CaveVin extends eqLogic {
 		}
         	return false;
 	}
-	if (init('action') == 'ExportVins') {	
+	public static function Export() {	
 		$file='/tmp/mesVin.zip';
 		if(file_exists($file))
 			unlink($file);
