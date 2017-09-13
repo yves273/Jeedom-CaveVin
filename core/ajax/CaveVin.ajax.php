@@ -8,49 +8,11 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	if (init('action') == 'ImportVins') {
-		if (isset($_FILES['Vins'])){
-			$dir=dirname(__FILE__) .'/../../images/';
-			$File=$_FILES['Vins']['tmp_name'];
-			if (!is_dir($dir)) 
-				mkdir($dir);
-			$zip = new ZipArchive(); 
-			// On ouvre l’archive.
-			if($zip->open($File) == TRUE)
-			{
-				$zip->extractTo($dir);
-				$zip->close();
-				$ListeVins=json_decode(file_get_contents($dir.'mesVin.sql'),true);
-				foreach($ListeVins as $vin){
-	           			$mesVin = new mesVin();
-					utils::a2o($mesVin, jeedom::fromHumanReadable($vin));
-					$mesVin->save();
-				}
-				unlink($dir.'mesVin.sql');
-			}
-		}
-		ajax::success(true);
+		if (isset($_FILES['Vins']))
+			ajax::success(CaveVin::Import($_FILES['Vins']['tmp_name']));
 	}
 	if (init('action') == 'ExportVins') {	
-		$file='/var/www/html/tmp/mesVin.zip';
-		if(file_exists($file))
-			unlink($file);
-		$zip = new ZipArchive; 
-		if ($zip->open($file, ZipArchive::CREATE) === TRUE) { 
-			log::add('CaveVin','debug','Création du fichier d\'export');	
-			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
-			$dir=dirname(__FILE__) .'/../../images/';
-			$dh = opendir($dir); 
-			while($file = readdir($dh)) { 	
-				if ($file != '.' && $file != '..') { 
-					log::add('CaveVin','debug','Ajout a l\'export:'.$dir.$file);	
-					$zip->addFile($dir.$file,'etiquette/'.$file); 
-				} 
-			} 
-			closedir($dh); 
-			$zip -> close(); 
-        		ajax::success("/var/www/html/tmp/mesVin.zip");
-		}
-        	ajax::success(false);
+		ajax::success(CaveVin::Export());
 	}
 	if (init('action') == 'getFiltreVins') {	
 		switch(init('Filtre')){
