@@ -138,6 +138,7 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 		$('.mesVinAction[data-action=save]').hide();
 	}
 	$('.vinChoix').on('change',function(){
+		$('.mesVinAttr').prop( "disabled", true);
 		getVinInformation($(this).val());
 		$('.mesVinAction[data-action=remove]').show();
 		$('.mesVinAction[data-action=save]').show();
@@ -145,24 +146,15 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 	$('.mesVinAction[data-action=new]').on('click', function () {
 		$('#bt_uploadEttiquette').show();
 		$('.mesVinAttr').prop( "disabled", false);
-		$('.mesVinAttr').val();
+		$('.mesVinAttr').val('');
 		$('.mesVinAction[data-action=save]').show();
 		$('.mesVinAction[data-action=del]').show();
 		$('.mesVinAction[data-action=remove]').hide();
 		$('.mesVinAction[data-action=add]').hide();
 	});
 	$('.mesVinAction[data-action=update]').on('click', function () {
-        	//if ($('.mesVinAttr[data-l1key=Nom]').prop("disabled") == false) {
-			//$('#bt_uploadEttiquette').hide();
-			//$('.mesVinAttr').prop( "disabled", true);
-			//$('.mesVinAction[data-action=remove]').hide();
-			//$('.mesVinAction[data-action=save]').hide();
-		//}else  {
-			$('#bt_uploadEttiquette').show();
-			$('.mesVinAttr').prop( "disabled", false);
-			//$('.mesVinAction[data-action=remove]').show();
-			//$('.mesVinAction[data-action=save]').show();
-		//}
+		$('#bt_uploadEttiquette').show();
+		$('.mesVinAttr').prop( "disabled", false);
 		$('.mesVinAction[data-action=save]').show();
 		$('.mesVinAction[data-action=del]').show();
 		$('.mesVinAction[data-action=remove]').hide();
