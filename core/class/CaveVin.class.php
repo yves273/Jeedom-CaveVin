@@ -27,6 +27,49 @@ class CaveVin extends eqLogic {
 		}
 		return $Commande;
 	}
+	public static function Import($File) {
+		$dir=dirname(__FILE__) .'/../../images/';
+		if (!is_dir($dir)) 
+			mkdir($dir);
+		$zip = new ZipArchive(); 
+		// On ouvre l’archive.
+		if($zip->open($File) == TRUE)
+		{
+			$zip->extractTo($dir);
+			$zip->close();
+			$ListeVins=json_decode(file_get_contents($dir.'mesVin.sql'),true);
+			foreach($ListeVins as $vin){
+				$mesVin = new mesVin();
+				utils::a2o($mesVin, jeedom::fromHumanReadable($vin));
+				$mesVin->save();
+			}
+			unlink($dir.'mesVin.sql');
+			return true;
+		}
+        	return false;
+	}
+	if (init('action') == 'ExportVins') {	
+		$file='/tmp/mesVin.zip';
+		if(file_exists($file))
+			unlink($file);
+		$zip = new ZipArchive; 
+		if ($zip->open($file, ZipArchive::CREATE) === TRUE) { 
+			log::add('CaveVin','debug','Création du fichier d\'export');	
+			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
+			$dir=dirname(__FILE__) .'/../../images/';
+			$dh = opendir($dir); 
+			while($file = readdir($dh)) { 	
+				if ($file != '.' && $file != '..') { 
+					log::add('CaveVin','debug','Ajout a l\'export:'.$dir.$file);	
+					$zip->addFile($dir.$file,'etiquette/'.$file); 
+				} 
+			} 
+			closedir($dh); 
+			$zip -> close(); 
+        		return $file;
+		}
+        	return false;
+	}
 	public static function pull($_option) {
 		log::add('CaveVin', 'debug', 'Objet mis à jour => ' . json_encode($_option));
 		$Volet = CaveVin::byId($_option['CaveVin_id']);
