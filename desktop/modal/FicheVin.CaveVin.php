@@ -146,7 +146,7 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 	$('.mesVinAction[data-action=new]').on('click', function () {
 		$('#bt_uploadEttiquette').show();
 		$('.mesVinAttr').prop( "disabled", false);
-		$('.mesVinAttr').val('');
+		getVinInformation('');
 		$('.mesVinAction[data-action=save]').show();
 		$('.mesVinAction[data-action=del]').show();
 		$('.mesVinAction[data-action=remove]').hide();
