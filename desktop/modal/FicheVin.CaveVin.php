@@ -129,6 +129,10 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 </form>
 <script>
 	$('#bt_uploadEttiquette').hide();
+	$('.mesVinAction[data-action=save]').hide();
+	$('.mesVinAction[data-action=del]').hide();
+	$('.mesVinAction[data-action=remove]').hide();
+	$('.mesVinAction[data-action=add]').hide();
 	$('.mesVinAttr').prop( "disabled", true );
 	if ($('.mesVinAttr[data-l1key=id]') == ''){
 		$('.mesVinAction[data-action=save]').hide();
@@ -138,18 +142,17 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 		$('.mesVinAction[data-action=remove]').show();
 		$('.mesVinAction[data-action=save]').show();
 	});
+	$('.mesVinAction[data-action=new]').on('click', function () {
+		getVinInformation('');
+		$('.mesVinAction[data-action=update]').trigger('click');
+	});
 	$('.mesVinAction[data-action=update]').on('click', function () {
-        	if ($('.mesVinAttr[data-l1key=Nom]').prop("disabled") == false) {
-			$('#bt_uploadEttiquette').hide();
-			$('.mesVinAttr').prop( "disabled", true);
-			//$('.mesVinAction[data-action=remove]').hide();
-			//$('.mesVinAction[data-action=save]').hide();
-		}else  {
-			$('#bt_uploadEttiquette').show();
-			$('.mesVinAttr').prop( "disabled", false);
-			//$('.mesVinAction[data-action=remove]').show();
-			//$('.mesVinAction[data-action=save]').show();
-		}
+		$('#bt_uploadEttiquette').show();
+		$('.mesVinAttr').prop( "disabled", false);
+		$('.mesVinAction[data-action=save]').show();
+		$('.mesVinAction[data-action=del]').show();
+		$('.mesVinAction[data-action=remove]').hide();
+		$('.mesVinAction[data-action=add]').hide();
 	});
 	$('#bt_uploadEttiquette').fileupload({
 		dataType: 'json',
@@ -187,6 +190,10 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 					$('.mesVinAttr').prop( "disabled", true );			
 					$('.mesVinAttr[data-l1key=id]').val(data.result.id);
 					UpdateListVin();
+					$('.mesVinAction[data-action=save]').hide();
+					$('.mesVinAction[data-action=del]').hide();
+					$('.mesVinAction[data-action=remove]').hide();
+					$('.mesVinAction[data-action=add]').hide();
 				}
 			});
 	});
@@ -213,6 +220,10 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 							$('.mesVinAttr').prop( "disabled", true );	
 							UpdateListVin();
 							getVinInformation(1);
+							$('.mesVinAction[data-action=save]').hide();
+							$('.mesVinAction[data-action=del]').hide();
+							$('.mesVinAction[data-action=remove]').hide();
+							$('.mesVinAction[data-action=add]').hide();
 						}
 					});
 				}
@@ -251,7 +262,12 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 	function getVinInformation(id) {
 		$('.mesVinAttr').val('');
 		$('.mesVinAttr[data-l1key=Ettiquette]').parent().find('.imgEttiquette').hide();
+		$('.mesVinAttr').prop( "disabled", true);
 		if(id!=''){
+			$('.mesVinAction[data-action=save]').hide();
+			$('.mesVinAction[data-action=del]').hide();
+			$('.mesVinAction[data-action=remove]').show();
+			$('.mesVinAction[data-action=add]').show();
 			$.ajax({
 				type: 'POST',            
 				async: false,
@@ -283,6 +299,11 @@ include_file('core', 'mesVin', 'class', 'CaveVin');
 						$('.mesVinAttr[data-l1key=Ettiquette]').parent().find('.imgEttiquette').attr('src',data.result.Ettiquette).show();
 				}
 			});
-		}
+		}else{			
+			$('.mesVinAction[data-action=save]').hide();
+			$('.mesVinAction[data-action=del]').hide();
+			$('.mesVinAction[data-action=remove]').show();
+			$('.mesVinAction[data-action=add]').hide();	
+		}		
 	};
 </script>

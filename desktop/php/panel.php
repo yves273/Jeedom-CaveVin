@@ -34,7 +34,10 @@
 					<a class="btn btn-success" id="bt_search"><i class="fa fa-search"></i></a>
 				</div>
 				<div class="form-group">
-					<a class="btn btn-success mesVinAction" data-action="update"><i class="fa fa-check-circle"></i> {{Ajouter / modifier}}</a>
+					<a class="btn btn-success mesVinAction" data-action="new"><i class="fa fa-check-circle"></i> {{Ajouter}}</a>
+				</div>
+				<div class="form-group">
+					<a class="btn btn-success mesVinAction" data-action="update"><i class="fa fa-check-circle"></i> {{Modifier}}</a>
 				</div>
 				<div class="form-group">
 					<a class="btn btn-warning mesVinAction" data-action="exporter"><i class="fa fa-check-circle"></i> {{Exporter}}</a>

@@ -2,9 +2,7 @@
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 function CaveVin_install() {
-	$values = array(
-				'id' => 'mesVin',
-				);			
+	$values = array('id' => 'mesVin');			
 	$sql = "SHOW TABLES LIKE :id";
 	$mesVin = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	if (!$mesVin) {
@@ -38,9 +36,7 @@ function CaveVin_install() {
 }
 
 function CaveVin_update() {
-	$values = array(
-				'id' => 'mesVin',
-				);			
+	$values = array('id' => 'mesVin');			
 	$sql = "SHOW TABLES LIKE :id";
 	$mesVin = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 	if (!$mesVin) {
@@ -71,5 +67,10 @@ function CaveVin_update() {
 		$sql = "ALTER TABLE `mesVin` ADD `Garde` text COLLATE 'utf8_general_ci' NULL;";
 		DB::Prepare($sql, array(), DB::FETCH_TYPE_ROW);
 	}
+}
+function CaveVin_remove() {
+	$values = array('id' => 'mesVin');
+	$sql = "SDROP TABLE mesVin";
+	$mesVin = DB::Prepare($sql, $values, DB::FETCH_TYPE_ROW);
 }
 ?>
