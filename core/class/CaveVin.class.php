@@ -49,11 +49,11 @@ class CaveVin extends eqLogic {
         	return false;
 	}
 	public static function ExportVins() {	
-		$file='/var/www/html/tmp/mesVin.zip';
-		if(file_exists($file))
-			unlink($file);
+		$zipFile='/var/www/html/tmp/mesVin.zip';
+		if(file_exists($zipFile))
+			unlink($zipFile);
 		$zip = new ZipArchive; 
-		if ($zip->open($file, ZipArchive::CREATE) === TRUE) { 
+		if ($zip->open($zipFile, ZipArchive::CREATE) === TRUE) { 
 			log::add('CaveVin','debug','Création du fichier d\'export');	
 			$zip->addFromString('mesVin.sql', json_encode(utils::o2a(mesVin::all())));
 			$dir=dirname(__FILE__) .'/../../images/';
@@ -66,7 +66,7 @@ class CaveVin extends eqLogic {
 			} 
 			closedir($dh); 
 			$zip -> close(); 
-        		return $file;
+        		return $zipFile;
 		}
         	return false;
 	}
